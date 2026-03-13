@@ -1,61 +1,98 @@
+% ==========================================
+% 1. ドキュメントクラス・基本設定
+% ==========================================
+% 16:9の比率、フォントサイズ10.5pt、dvipdfmxを使用するBeamerクラス
 \documentclass[dvipdfmx, autodetect-engine, aspectratio=169, 10.5pt]{beamer} 
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath, amssymb, bm, ascmac, multicol}
-\usepackage{pxjahyper}
-\renewcommand{\baselinestretch}{1.5} % 行間の指定
-\usepackage{siunitx}
-\usepackage{float}
-\usepackage{cases}
-\usepackage{subcaption}
-\usepackage{nidanfloat}
-\usepackage{url}
-\usepackage{mathtools}
-\usepackage{listings,jvlisting}
-\usepackage{fancybox}
-\usepackage{physics}
-\usepackage{amsthm}
-\usepackage{tikz}
+\usepackage[utf8]{inputenc} % 文字コードをUTF-8に指定
+\usepackage{pxjahyper} % しおりやハイパーリンクの文字化け防止
 
-% 証明終了記号を出さない proof 環境
+% ==========================================
+% 2. 数式・物理系のパッケージ
+% ==========================================
+\usepackage{amsmath, amssymb, mathtools} % 数式環境と拡張コマンド
+\usepackage{bm} % 太字ベクトル
+\usepackage{physics} % 物理用の数式コマンド（微分、ブラケットなど）
+\usepackage{siunitx} % SI単位系の出力
+\usepackage{cases} % 連立方程式の各行に数式番号を付与
+\usepackage{amsthm} % 定理・証明環境
+
+% ==========================================
+% 3. 体裁・レイアウト設定
+% ==========================================
+\renewcommand{\baselinestretch}{1.5} % 行間を1.5倍に設定
+\usepackage{multicol} % 段組み
+\usepackage{float, nidanfloat} % 図表の配置固定と2段組み時の配置設定
+\usepackage{subcaption} % 複数の図を並べて(a)(b)などの小見出しを付与
+\usepackage{url} % URLの整形
+
+% ==========================================
+% 4. コード表示・ボックス（枠）設定
+% ==========================================
+\usepackage{listings, jvlisting} % ソースコードの色付き表示
+\usepackage{ascmac, fancybox} % 各種枠付き環境
+\usepackage{tcolorbox} % 見栄えの良い色付きボックス
+\tcbuselibrary{theorems, skins} % tcolorboxの定理環境・装飾拡張
+
+% ==========================================
+% 5. 図形描画（TikZ）設定
+% ==========================================
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+% 必要なTikZライブラリをまとめて読み込み
+\usetikzlibrary{math, arrows.meta, angles, quotes, decorations.markings}
+
+% ==========================================
+% 6. カスタム環境の定義
+% ==========================================
+% 証明終了記号（白い四角）を出さない proof 環境（proof*）
 \newenvironment{proof*}[1][\proofname]{%
   \begin{proof}[#1]\renewcommand{\qedsymbol}{}%
 }{%
   \end{proof}%
 }
-\usepackage{tikz-3dplot}
 
-
-\usetikzlibrary{math} % tikz内で数値計算を行う際に必要なライブラリ
-\usetikzlibrary{arrows.meta} % 矢印のスタイルを指定するためのライブラリ
-\usetikzlibrary{angles,quotes}
-\usetikzlibrary{decorations.markings}
+% ==========================================
+% 7. スライド（Beamer）のデザイン・テーマ
+% ==========================================
+\usetheme{Boadilla} % 全体テーマ
+\usecolortheme{whale} % 色テーマ
+\usefonttheme{professionalfonts} % 数式フォントを美しくする
+\useinnertheme{rectangles} % 箇条書きのマーカーを四角に
 \setbeamertemplate{items}[default]
-\usepackage{tcolorbox}
-\tcbuselibrary{theorems}
-\tcbuselibrary{theorems,skins}
+\setbeamertemplate{navigation symbols}{} % 右下のナビゲーションを非表示
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries} % タイトル文字の調整
 
-\usetheme{Boadilla}
-%\usetheme{Marburg}
-\usecolortheme{whale}
-\usefonttheme{professionalfonts}
-\useinnertheme{rectangles}
-\setbeamertemplate{navigation symbols}{}
-\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+% ==========================================
+% 8. タイトル情報
+% ==========================================
+\title[オナー発表]{オナー発表} % [フッター用] メインタイトル
+\author[なまえ1]{なまえ2}     % [フッター用] 発表者名
+\institute[A]{B}              % [フッター用] 所属
+\date{\today}                 % 発表日（\today でコンパイル日の日付を自動入力）
 
-\title[オナー発表]{オナー発表}
-\author[なまえ1]{なまえ2}
-\institute[A]{B}
-\date{date}
 
+% ==========================================
+% 9. 本文（スライド内容）
+% ==========================================
 \begin{document}
 
+% --- タイトルスライド ---
 \begin{frame}
-\rightline{}
-\titlepage
+  \titlepage
 \end{frame}
 
+% --- 目次スライド ---
 \begin{frame}{目次}
-\tableofcontents
+  \tableofcontents
+\end{frame}
+
+% --- ここから実際のスライドを追加 ---
+\begin{frame}{最初のスライドタイトル}
+  ここに内容を書きます。
+  \begin{itemize}
+      \item 箇条書き1
+      \item 箇条書き2
+  \end{itemize}
 \end{frame}
 
 \end{document}
