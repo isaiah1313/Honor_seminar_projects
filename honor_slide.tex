@@ -1,19 +1,16 @@
-% ==========================================
 % 1. ドキュメントクラス・基本設定
-% ==========================================
-% 16:9の比率、フォントサイズ10.5pt、dvipdfmxを使用するBeamerクラス
-\documentclass[dvipdfmx, autodetect-engine, aspectratio=169, 10.5pt]{beamer} 
-\usepackage[utf8]{inputenc} % 文字コードをUTF-8に指定
-\usepackage{pxjahyper} % しおりやハイパーリンクの文字化け防止
+% LuaLaTeXを使う場合は lualatex オプションを指定するのがスムーズです
+\documentclass[unicode, lualatex, aspectratio=169, 10.5pt]{beamer}
 
-% ==========================================
-% 2. 数式・物理系のパッケージ
-% ==========================================
-\usepackage{amsmath, amssymb, mathtools} % 数式環境と拡張コマンド
-\usepackage{bm} % 太字ベクトル
-\usepackage{physics} % 物理用の数式コマンド（微分、ブラケットなど）
-\usepackage{cases} % 連立方程式の各行に数式番号を付与
-\usepackage{amsthm} % 定理・証明環境
+% 2. 日本語設定（これを追加）
+\usepackage{luatexja} % LuaLaTeXで日本語を扱うための必須パッケージ
+\usepackage[ipaex]{luatexja-fontspec} % 標準的なIPAexフォントなどを使用
+
+% 3. 数式・物理系のパッケージ
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage[italic-helpers]{siunitx} % physicsとの競合対策
 
 % ==========================================
 % 3. 体裁・レイアウト設定
