@@ -1,9 +1,13 @@
 % 1. 基本設定
-\documentclass[unicode, aspectratio=169, 10.5pt]{beamer}
+\documentclass[unicode, aspectratio=169, 14pt]{beamer}
+
+
 
 % 2. 日本語設定
 % fontspecは指定せず、標準の原ノ味フォント（TeX Live標準）に任せるのが最も安全です
 \usepackage{luatexja} 
+
+
 
 % 3. 数式・物理系のパッケージ
 \usepackage{amsmath, amssymb, mathtools, bm}
@@ -11,11 +15,15 @@
 % physicsとの競合（\qty）を避ける設定で読み込みます
 \usepackage[overwrite-functions=false]{siunitx} 
 
+
+
 % 4. 図・グラフ・枠組み（TikZ & tcolorbox）
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{math, arrows.meta, angles, quotes, decorations.markings}
 \usepackage[most]{tcolorbox} % 枠付きボックス（ascmacの代わりになります）
+
+
 
 % 5. レイアウト設定
 \renewcommand{\baselinestretch}{1.2} % スライドでは1.5は広すぎるため1.2程度が一般的です
@@ -27,15 +35,91 @@
 \usefonttheme{professionalfonts}
 \setbeamertemplate{navigation symbols}{} % 右下のアイコンを消す
 \setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+\setbeamersize{text margin left=1cm, text margin right=1cm} %スライドの両端1cmを白紙にして寄りすぎないようにする
 
 % 7. タイトル情報
 \title{オナーセミナー最終報告}
-\author{笹 \and 共同 太郎}
+\author{笹伶夷\and 下橋以紗也\and 田處裕哉}
 \institute{大阪大学 理学部 物理学科}
 \date{\today}
 
+
+%===============================================================
 \begin{document}
+
+%タイトルスライド
 \begin{frame}
-    Hello, LuaLaTeX! 日本語テスト。
+    \titlepage
 \end{frame}
+
+
+%目次スライド
+\begin{frame}
+    \tableofcontents
+\end{frame}
+
+
+
+%===============================================================
+\section{場の古典論とは}
+
+\begin{frame}{場の古典論とは}
+    \begin{block}{場}
+        空間に分布している物理量のこと
+    \end{block}
+
+    \begin{center}
+        {\Large $\bm{+}$}
+    \end{center}
+
+    \begin{block}{古典論}
+        量子力学的ではないという意味
+    \end{block}
+
+    \begin{block}{場の古典論}
+        量子力学的ではない，空間に分布する物理量(質点や電磁場)を扱う分野
+    \end{block}
+
+\end{frame}
+
+
+
+\begin{frame}{場の古典論とは}
+
+\end{frame}
+
+
+%===============================================================
+\section{特殊相対性理論の舞台}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{特殊相対性理論の出発点}
+        \begin{itemize}
+            \item 宇宙の情報の伝達速度には上限がある
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+
+%===============================================================
+\section{最小作用の原理とは}
+\begin{frame}{最小作用の原理}
+
+\end{frame}
+
+
+
+%===============================================================
+\section{質点の時間発展}
+\begin{frame}{質点の時間発展}
+    
+\end{frame}
+
+
+%===============================================================
+\section{電磁場の時間発展}
+\begin{frame}{質点の時間発展}
+    
+\end{frame}
+
 \end{document}
