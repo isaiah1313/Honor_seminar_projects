@@ -1,0 +1,61 @@
+\documentclass[dvipdfmx, autodetect-engine, aspectratio=169, 10.5pt]{beamer} 
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, bm, ascmac, multicol}
+\usepackage{pxjahyper}
+\renewcommand{\baselinestretch}{1.5} % 行間の指定
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{cases}
+\usepackage{subcaption}
+\usepackage{nidanfloat}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{listings,jvlisting}
+\usepackage{fancybox}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{tikz}
+
+% 証明終了記号を出さない proof 環境
+\newenvironment{proof*}[1][\proofname]{%
+  \begin{proof}[#1]\renewcommand{\qedsymbol}{}%
+}{%
+  \end{proof}%
+}
+\usepackage{tikz-3dplot}
+
+
+\usetikzlibrary{math} % tikz内で数値計算を行う際に必要なライブラリ
+\usetikzlibrary{arrows.meta} % 矢印のスタイルを指定するためのライブラリ
+\usetikzlibrary{angles,quotes}
+\usetikzlibrary{decorations.markings}
+\setbeamertemplate{items}[default]
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\tcbuselibrary{theorems,skins}
+
+\usetheme{Boadilla}
+%\usetheme{Marburg}
+\usecolortheme{whale}
+\usefonttheme{professionalfonts}
+\useinnertheme{rectangles}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+
+\title[オナー発表]{オナー発表}
+\author[なまえ1]{なまえ2}
+\institute[A]{B}
+\date{date}
+
+\begin{document}
+
+\begin{frame}
+\rightline{}
+\titlepage
+\end{frame}
+
+\begin{frame}{目次}
+\tableofcontents
+\end{frame}
+
+\end{document}
