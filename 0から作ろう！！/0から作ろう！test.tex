@@ -1,0 +1,41 @@
+% 1. 基本設定
+\documentclass[unicode, aspectratio=169, 10.5pt]{beamer}
+
+% 2. 日本語設定
+% fontspecは指定せず、標準の原ノ味フォント（TeX Live標準）に任せるのが最も安全です
+\usepackage{luatexja} 
+
+% 3. 数式・物理系のパッケージ
+\usepackage{amsmath, amssymb, mathtools, bm}
+\usepackage{physics} 
+% physicsとの競合（\qty）を避ける設定で読み込みます
+\usepackage[overwrite-functions=false]{siunitx} 
+
+% 4. 図・グラフ・枠組み（TikZ & tcolorbox）
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{math, arrows.meta, angles, quotes, decorations.markings}
+\usepackage[most]{tcolorbox} % 枠付きボックス（ascmacの代わりになります）
+
+% 5. レイアウト設定
+\renewcommand{\baselinestretch}{1.2} % スライドでは1.5は広すぎるため1.2程度が一般的です
+\usepackage{url}
+
+% 6. Beamerのデザインテーマ（Boadillaベース）
+\usetheme{Boadilla}
+\usecolortheme{whale}
+\usefonttheme{professionalfonts}
+\setbeamertemplate{navigation symbols}{} % 右下のアイコンを消す
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+
+% 7. タイトル情報
+\title{オナーセミナー最終報告}
+\author{笹 \and 共同 太郎}
+\institute{大阪大学 理学部 物理学科}
+\date{\today}
+
+\begin{document}
+\begin{frame}
+    Hello, LuaLaTeX! 日本語テスト。
+\end{frame}
+\end{document}
