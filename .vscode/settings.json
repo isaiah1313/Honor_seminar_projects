@@ -12,6 +12,7 @@
             "name": "latexmk-lualatex",
             "command": "latexmk",
             "args": [
+                "-f",//警告があってもPDF生成を強行する
                 "-silent",
                 "-lualatex",
                 "-synctex=1",
@@ -23,3 +24,4 @@
         }
     ]
 }
+
