@@ -1,2 +1,0 @@
-\beamer@sectionintoc {1}{場の古典論とは}{3}{0}{1}
-\beamer@sectionintoc {2}{特殊相対性理論の舞台}{4}{0}{2}
