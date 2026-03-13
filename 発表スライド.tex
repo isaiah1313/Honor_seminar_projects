@@ -1,0 +1,28 @@
+\documentclass{article}
+
+% 日本語を使うための設定
+\usepackage{luatexja} % 日本語を使うためのパッケージ
+
+
+%数式系のパッケージ
+\usepackage{bm}%太字ベクトルの表記
+\usepackage{amsmath}%align環境を使えるようにする
+\usepackage{amsfonts}%数学フォントを使うためのパッケージ
+
+%体裁を整える系のパッケージ
+\usepackage{here}%図やグラフの表示位置を強制的にここにする
+\usepackage[top=20truemm,bottom=20truemm]{geometry}%1ページ目を強制的に上に上げる
+\usepackage{tikz}%tcolorboxを使うため？のパッケージ
+\usepackage[most]{tcolorbox}%定理の箱を表示するためのオプション
+\usepackage{amsthm}%proof環境を使うためのパッケージ
+
+
+\renewcommand{\tablename}{表} % "table"を"表"に
+\renewcommand{\figurename}{図}% "Figure"を"図"に
+\renewcommand{\proofname}{\textbf{証明}}% "proof"を"証明"に
+\renewcommand{\contentsname}{目次}%"Contents"を"目次"に
+
+\begin{document}
+これはテストです\\
+$\frac{1}{3}=0$
+\end{document}
