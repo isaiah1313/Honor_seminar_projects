@@ -25,7 +25,7 @@
     ],
     // --- 【ここがポイント】校閲を完全にオフにする ---
     "latex-workshop.linting.chktex.enabled": false,
-    "latex-workshop.linting.run": "never",
+    //"latex-workshop.linting.run": "never",
     
     // 保存時の自動ビルド設定
     "latex-workshop.latex.autoBuild.run": "onSave",
