@@ -12,7 +12,7 @@
             "name": "latexmk-lualatex",
             "command": "latexmk",
             "args": [
-                "-f",//警告があってもPDF生成を強行する
+                "-f",
                 "-silent",
                 "-lualatex",
                 "-synctex=1",
@@ -23,28 +23,12 @@
             ]
         }
     ],
-    // 1. 保存するたびに自動でコンパイルしてエラーをチェックする
+    // --- 【ここがポイント】校閲を完全にオフにする ---
+    "latex-workshop.linting.chktex.enabled": false,
+    "latex-workshop.linting.run": "never",
+    
+    // 保存時の自動ビルド設定
     "latex-workshop.latex.autoBuild.run": "onSave",
-
-    // 2. エラーや警告があったら通知を出す
     "latex-workshop.message.error.show": true,
-    "latex-workshop.message.warning.show": true,
-
-    // 3. エディタ上の「問題」パネルを自動で整理する
-    "latex-workshop.latex.build.clearLog.enabled": true,
-
-    // 4. (重要) コンパイルせずに文法チェックだけ行う「ChkTeX」を有効にする
-    "latex-workshop.linting.chktex.enabled": true,
-    "latex-workshop.linting.run": "onType",
-
-
-    // ChkTeXの警告を微調整
-    "latex-workshop.linting.chktex.exec.args": [
-        "-n8",  // "Wrong non-ASCII character" (日本語に対する警告) を無視
-        "-n1",  // "Command terminated with space" (日本語直後のスペース) を無視
-        "-n24", // "Delete this space" を無視
-        "-wall"
-    ]
+    "latex-workshop.message.warning.show": false
 }
-}
-
