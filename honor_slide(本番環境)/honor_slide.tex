@@ -1,0 +1,125 @@
+% 1. ドキュメントクラス・基本設定
+% LuaLaTeXを使う場合は lualatex オプションを指定するのがスムーズです
+\documentclass[unicode, lualatex, aspectratio=169, 10.5pt]{beamer}
+
+% 2. 日本語設定（これを追加）
+\usepackage{luatexja} % LuaLaTeXで日本語を扱うための必須パッケージ
+\usepackage[ipaex]{luatexja-fontspec} % 標準的なIPAexフォントなどを使用
+
+% 3. 数式・物理系のパッケージ
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage[italic-helpers]{siunitx} % physicsとの競合対策
+
+% ==========================================
+% 3. 体裁・レイアウト設定
+% ==========================================
+\renewcommand{\baselinestretch}{1.5} % 行間を1.5倍に設定
+\usepackage{multicol} % 段組み
+\usepackage{float, nidanfloat} % 図表の配置固定と2段組み時の配置設定
+\usepackage{subcaption} % 複数の図を並べて(a)(b)などの小見出しを付与
+\usepackage{url} % URLの整形
+
+% ==========================================
+% 4. コード表示・ボックス（枠）設定
+% ==========================================
+\usepackage{listings, jvlisting} % ソースコードの色付き表示
+\usepackage{ascmac, fancybox} % 各種枠付き環境
+\usepackage{tcolorbox} % 見栄えの良い色付きボックス
+\tcbuselibrary{theorems, skins} % tcolorboxの定理環境・装飾拡張
+
+% ==========================================
+% 5. 図形描画（TikZ）設定
+% ==========================================
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+% 必要なTikZライブラリをまとめて読み込み
+\usetikzlibrary{math, arrows.meta, angles, quotes, decorations.markings}
+
+% ==========================================
+% 6. カスタム環境の定義
+% ==========================================
+% 証明終了記号（白い四角）を出さない proof 環境（proof*）
+\newenvironment{proof*}[1][\proofname]{%
+  \begin{proof}[#1]\renewcommand{\qedsymbol}{}%
+}{%
+  \end{proof}%
+}
+
+% ==========================================
+% 7. スライド（Beamer）のデザイン・テーマ
+% ==========================================
+\usetheme{Boadilla} % 全体テーマ
+\usecolortheme{whale} % 色テーマ
+\usefonttheme{professionalfonts} % 数式フォントを美しくする
+\useinnertheme{rectangles} % 箇条書きのマーカーを四角に
+\setbeamertemplate{items}[default]
+\setbeamertemplate{navigation symbols}{} % 右下のナビゲーションを非表示
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries} % タイトル文字の調整
+
+% ==========================================
+% 8. タイトル情報
+% ==========================================
+\title[オナー発表]{オナー発表} % [フッター用] メインタイトル
+\author[なまえ1]{なまえ2}     % [フッター用] 発表者名
+\institute[A]{B}              % [フッター用] 所属
+\date{\today}                 % 発表日（\today でコンパイル日の日付を自動入力）
+
+
+% ==========================================
+% 9. 本文（スライド内容）
+% ==========================================
+\begin{document}
+
+% --- タイトルスライド ---
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% --- 目次スライド ---
+\begin{frame}{目次}
+  \tableofcontents
+\end{frame}
+
+<<<<<<< HEAD
+% --- ここから実際のスライドを追加 ---
+\section{場の古典論とは}
+
+\begin{frame}{場の古典論とは}
+  \begin{itemize}
+    \item 力学：物体の時間発展を扱う分野
+    \item 電磁気学：電磁場の時間発展扱う分野
+  \end{itemize}
+\end{frame}
+
+
+
+\section{特殊相対性理論の舞台}
+
+<<<<<<< HEAD:honor_slide.tex
+=======
+\begin{frame}
+  あ
+\end{frame}
+
+
+
+>>>>>>> origin/main:honor_slideのテスト/honor_slide.tex
+\section{最小作用の原理とは}
+
+\begin{frame}
+  あいうえお
+\end{frame}
+
+
+\section{質点の時間発展}
+
+
+
+\section{場の時間発展}
+
+
+
+
+\end{document}
