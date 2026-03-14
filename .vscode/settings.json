@@ -12,7 +12,7 @@
             "name": "latexmk-lualatex",
             "command": "latexmk",
             "args": [
-                "-f",//警告があってもPDF生成を強行する
+                "-f",
                 "-silent",
                 "-lualatex",
                 "-synctex=1",
@@ -22,6 +22,12 @@
                 "%DOC%"
             ]
         }
-    ]
+    ],
+    // --- 【ここがポイント】校閲を完全にオフにする ---
+    "latex-workshop.linting.chktex.enabled": false,
+    
+    // 保存時の自動ビルド設定
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.message.error.show": true,
+    "latex-workshop.message.warning.show": false
 }
-

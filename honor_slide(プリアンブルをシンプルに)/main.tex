@@ -1,0 +1,185 @@
+% 1. 基本設定
+\documentclass[unicode, aspectratio=169, 14pt]{beamer}
+
+
+
+% 2. 日本語設定
+% fontspecは指定せず、標準の原ノ味フォント（TeX Live標準）に任せるのが最も安全です
+\usepackage{luatexja} 
+
+
+
+% 3. 数式・物理系のパッケージ
+\usepackage{amsmath, amssymb, mathtools, bm}
+\usepackage{physics} 
+% physicsとの競合（\qty）を避ける設定で読み込みます
+\usepackage[overwrite-functions=false]{siunitx} 
+\usepackage{tensor} % テンソルをいい感じに描くためのパッケージ，それぞれのpcで使えるか要確認！！！！！！！！
+
+
+
+% 4. 図・グラフ・枠組み（TikZ & tcolorbox）
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{math, arrows.meta, angles, quotes, decorations.markings}
+\usepackage[most]{tcolorbox} % 枠付きボックス（ascmacの代わりになります）
+
+
+
+% 5. レイアウト設定
+\renewcommand{\baselinestretch}{1.2} % スライドでは1.5は広すぎるため1.2程度が一般的です
+\usepackage{url}
+
+\newcommand{\diff}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}} %常微分を書くパッケージ
+\newcommand{\pdiff}[2]{\frac{\mathrm{\partial} #1}{\mathrm{\partial} #2}} %常微分を書くパッケージ
+
+% 6. Beamerのデザインテーマ（Boadillaベース）
+\usetheme{Boadilla}
+\usecolortheme{whale}
+\usefonttheme{professionalfonts}
+\setbeamertemplate{navigation symbols}{} % 右下のアイコンを消す
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+\setbeamersize{text margin left=1cm, text margin right=1cm} %スライドの両端1cmを白紙にして寄りすぎないようにする
+
+% 7. タイトル情報
+\title{オナーセミナー最終報告}
+\author{笹伶夷\and 下橋以紗也\and 田處裕哉}
+\institute{大阪大学 理学部 物理学科}
+\date{\today}
+
+
+%===============================================================
+% 表記のルールの例
+% ベクトル空間は $\bm{V}$
+% ベクトルは太字にせずにそのまま x \in \bm{V} のように描く
+% テンソルはtensorパッケージを使って  \tensor{t}{^\mu_nu}のように書く (このパッケージじゃないと添字の位置がうまく表示されない)
+% 常微分は \diff{f}{t}のように書く, n階微分は \diff{^n f}{t^n}のように書く
+% 偏微分は \pdiff{f}{t}のように書く, n階微分は \pdiff{^n f}{t^n}のように書く
+
+
+%===============================================================
+\begin{document}
+
+%タイトルスライド
+\begin{frame}
+    \titlepage
+\end{frame}
+
+
+%目次スライド
+\begin{frame}
+    \tableofcontents
+\end{frame}
+
+
+
+%===============================================================
+\section{場の古典論とは}
+
+
+\begin{frame}{学部で習う物理の分野} %ここは突っ込まれそうなので直したい
+    \begin{itemize}
+        \item 力学 : 物体の運動を扱う
+        \item 電磁気学 : 電磁場について扱う
+        \item 特殊相対性理論 : 平坦な時空の物理を扱う
+        \item 一般相対性理論 : 重力で歪んだ時空の物理を扱う
+        \item 熱力学 : マクロな系を扱う
+        \item 統計力学 : マクロな系を統計的に扱う
+        \item 量子力学 : ミクロな系を扱う
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{場の古典論とは}
+
+    \begin{block}{}
+        場 : 空間に分布している物理量のこと\\
+        古典論 : 量子力学的ではないという意味
+    \end{block}
+
+    \begin{center}
+        {\Large $\Downarrow$}
+    \end{center}
+
+    \begin{alertblock}{場の古典論}
+        量子力学的ではない，\\
+        空間に分布する物理量(質点や電磁場，重力)を統一的に扱う分野
+    \end{alertblock}
+
+    本発表では質点と電磁場の理論について紹介する
+
+\end{frame}
+
+
+
+%===============================================================
+\section{特殊相対性理論の舞台}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{特殊相対性理論の出発点}
+        \begin{itemize}
+            \item 宇宙の情報の伝達速度には上限がある
+            \item 
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{空間ベクトル}
+        空間３次元のじつベクトル空間$\bm{V}$を考える
+        \begin{itemize}
+            \item  空間上の位置を位置ベクトル$x\in\bm{V}$で表す：
+            \begin{align*}
+                x = (x^i) = (x,y,z)^T\>(i=1,2,3)
+            \end{align*}
+            \item ベクトル$a\in\bm{V}$の"大きさ"を計量$I=\mathrm{diag}(1,1,1)$を用いて定義する：
+            \begin{align*}
+                \norm{a}^2=
+            \end{align*}
+        \end{itemize}        
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{ミンコフスキー空間 $\bm{M}$}
+        時間 1 次元と空間 3 次元を統合した 4 次元実ベクトル空間 $\bm{M}$ を考える。
+        \begin{itemize}
+            \item 位置と時間をまとめて \textbf{4元位置ベクトル} $x \in \bm{M}$ で表す：
+            \begin{equation*}
+                x = (x^\mu) = (ct, x, y, z)^T \quad (\mu = 0, 1, 2, 3)
+            \end{equation*}
+            \item ベクトル $a, b \in \bm{M}$ の内積を計量 $g = \mathrm{diag}(1, -1, -1, -1)$ を用いて定義する：
+            \begin{equation*}
+                a \cdot b = a^T g b = a^\mu g_{\mu\nu} b^\nu
+            \end{equation*}
+            \item $g$ により、$\bm{M}$ とその双対空間 $\bm{M}^*$ の元（共変ベクトル）が結びつく：
+            \begin{equation*}
+                x_\mu = g_{\mu\nu} x^\nu = (ct, -x, -y, -z)
+            \end{equation*}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+%===============================================================
+\section{最小作用の原理とは}
+\begin{frame}{最小作用の原理}
+
+\end{frame}
+
+
+
+%===============================================================
+\section{質点の時間発展}
+\begin{frame}{質点の時間発展}
+    
+\end{frame}
+
+
+%===============================================================
+\section{電磁場の時間発展}
+\begin{frame}{質点の時間発展}
+    
+\end{frame}
+
+\end{document}
