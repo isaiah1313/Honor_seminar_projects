@@ -80,7 +80,7 @@
 \begin{frame}{学部で習う物理の分野} %ここは突っ込まれそうなので直したい
     \begin{itemize}
         \item 力学 : 物体の運動を扱う
-        \item 電磁気学 : 電磁場について扱う
+        \item 電磁気学 : 電磁場を扱う
         \item 特殊相対性理論 : 平坦な時空の物理を扱う
         \item 一般相対性理論 : 重力で歪んだ時空の物理を扱う
         \item 熱力学 : マクロな系を扱う
@@ -189,15 +189,40 @@
             \item ローレンツ変換テンソルは計量$g$を不変に保つ：
             \begin{align*}
                 \tensor{g}{_\mu_\nu}=\tensor{g}{_\rho_\sigma}\tensor{\Lambda}{^\rho_\mu}\tensor{\Lambda}{^\sigma_\nu}
-            \end{align*}.
+            \end{align*}
         \end{itemize}
     \end{block}    
 \end{frame}
 
 %===============================================================
 \section{最小作用の原理とは}
-\begin{frame}{最小作用の原理}
+\begin{frame}{最小作用の原理とは}
+    \begin{block}{ラグラジアン$L$}
+        系の状態によって定まるエネルギーの次元を持つ量である\\
+    \end{block}
+ニュートン力学では$L(x,v)=\frac{1}{2}m v^2 -U(x)$と書けることが多い。
+    \begin{block}{作用$I$}
+        系の各瞬間のラグラジアンの値を時間積分した値：
+        \begin{align*}
+            I = \int_{t_0}^{t_1} L \>\mathrm{d}t
+        \end{align*}
+        系の時間発展が定まると作用$I$の値も一意に定まる
+    \end{block}
+\end{frame}
 
+
+\begin{frame}{最小作用の原理とは}
+    \begin{block}{最小作用の原理}
+        系が時間発展するとき，実現する時間発展の作用の変分
+        \footnote{作用の変分:考える系の時間発展と，少しだけ変化させた系の時間発展での作用の差のこと}
+        は$\delta I=0$となる。
+    \end{block}
+ニュートン力学の場合は最小作用の原理から運動方程式(オイラーラグランジュ方程式)を導出できる。
+\begin{align*}
+    0 = \delta I
+    &= \int_{t_0}^{t_1}L(x+\delta x, v + \delta v)\>\mathrm{d}t - \int_{t_0}^{t_1} L(x,v) \>\mathrm{d}t \\
+    &= \int_{t_0}^{t_1} \delta x \left[\diff{}{t}\pdiff{L}{v}-\pdiff{L}{x}\right]\>\mathrm{d}t
+\end{align*}
 \end{frame}
 
 
