@@ -1,11 +1,19 @@
-% 1. 基本設定
+%1. 基本設定
 \documentclass[unicode, aspectratio=169, 12pt]{beamer}
+%\usecolortheme[RGB={0, 139, 0}]{structure} %多分RGBで色を変えられる
 
 
 
-% 2. 日本語設定
+% 2. 日本語設定（元々はこれだった，明朝体）
 % fontspecは指定せず、標準の原ノ味フォント（TeX Live標準）に任せるのが最も安全です
-\usepackage{luatexja} 
+%\usepackage{luatexja} 
+
+% 2. 日本語設定（ゴシック体にフォント変更してみた）
+% haranoajiを指定し、スライド全体の日本語デフォルトをゴシック体に変更する
+\usepackage[haranoaji]{luatexja-preset}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\familydefault}{\sfdefault}
+
 
 
 
@@ -126,7 +134,7 @@
 
 \begin{frame}{特殊相対性理論の舞台}
     \begin{block}{ニュートン力学の舞台}
-        空間３次元の実ベクトル空間$\bm{V}$を考える
+        空間3次元の実ベクトル空間$\bm{V}$を考える
         \begin{itemize}
             \item  空間上の位置を位置ベクトル$x\in\bm{V}$で表す：
             \begin{align*}
@@ -144,7 +152,7 @@
 
 \begin{frame}{特殊相対性理論の舞台}
     \begin{block}{ミンコフスキー空間 $\bm{M}$}
-        時間 1 次元と空間 3 次元を統合した 4 次元実ベクトル空間 $\bm{M}$ を考える。
+        時間1次元と空間3次元を統合した4次元実ベクトル空間 $\bm{M}$ を考える。
         \begin{itemize}
             \item 位置と時間をまとめて \textbf{4元位置ベクトル} $x \in \bm{M}$ で表す：
             \begin{equation*}
@@ -158,7 +166,7 @@
 \begin{frame}{特殊相対性理論の舞台}
     \begin{block}{ミンコフスキー空間$\bm{M}$}
         \begin{itemize}
-            \item ベクトル $a, b \in \bm{M}$ の"大きさ"を計量 $g = \mathrm{diag}(1, -1, -1, -1)$ を用いて定義する：
+            \item ベクトル $a \in \bm{M}$ の"大きさ"を計量 $g = \mathrm{diag}(1, -1, -1, -1)$ を用いて定義する：
             \begin{equation*}
                 \norm{a}^2 = a^\mu a^\nu \tensor{g}{_\mu_\nu} = (a_0)^2-(a_1)^2-(a_2)^2-(a_3)^2
             \end{equation*}
@@ -243,7 +251,8 @@
 %===============================================================
 \section{質点の時間発展}
 \begin{frame}{質点の時間発展}
-    自由質点の時間発展を表す作用がどのようになるのかを考える。
+    自由粒子の時間発展を表す作用がどのようになるのかを考える。\\
+    自由粒子は空間中では等速直線運動しかしない。つまり，ミンコフスキー空間上で粒子の世界線が直線になる運動が最小になるように作用を選ぶ必要がある。
 \end{frame}
 
 
