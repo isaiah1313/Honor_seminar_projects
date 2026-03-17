@@ -48,6 +48,7 @@
 \setbeamertemplate{navigation symbols}{} % 右下のアイコンを消す
 \setbeamerfont{frametitle}{size=\Large, series=\bfseries}
 \setbeamersize{text margin left=1cm, text margin right=1cm} %スライドの両端1cmを白紙にして寄りすぎないようにする
+\setbeamertemplate{blocks}[rounded][shadow=false] %blockの下側の影を消す
 
 % 7. タイトル情報
 \title{オナーセミナー最終報告}
@@ -138,12 +139,12 @@
         \begin{itemize}
             \item  空間上の位置を位置ベクトル$x\in\bm{V}$で表す：
             \begin{align*}
-                x = (x^i) = (x,y,z)^T\quad(i=1,2,3)
+                x = [x^i] = [x,y,z]^T\quad(i=1,2,3)
             \end{align*}
             \item 時刻$t$は単なる実数パラメータで質点の運動は$\bm{r}(t)\in\bm{V}$と表す。
             \item ベクトル$a\in\bm{V}$の"大きさ"を計量$I=\mathrm{diag}(1,1,1)$を用いて定義する：
             \begin{align*}
-                \norm{a}^2=a^i a^j \tensor{I}{_i_j} = (a_1)^2+(a_2)^2+(a_3)^2
+                \norm{a}^2 = \tensor{I}{_i_j} a^i a^j  = (a_1)^2+(a_2)^2+(a_3)^2
             \end{align*}
         \end{itemize}        
     \end{block}
@@ -156,7 +157,7 @@
         \begin{itemize}
             \item 位置と時間をまとめて \textbf{4元位置ベクトル} $x \in \bm{M}$ で表す：
             \begin{equation*}
-                x = (x^\mu) = (ct, x, y, z)^T \quad (\mu = 0, 1, 2, 3)
+                x = [x^\mu] = [ct, x, y, z]^T \quad (\mu = 0, 1, 2, 3)
             \end{equation*}
             \item 質点の運動はミンコフスキー空間上の曲線として表される。
         \end{itemize}
@@ -164,25 +165,32 @@
 \end{frame}
 
 \begin{frame}{特殊相対性理論の舞台}
-    \begin{block}{ミンコフスキー空間$\bm{M}$}
+    \begin{block}{計量$g$}
         \begin{itemize}
-            \item ベクトル $a \in \bm{M}$ の"大きさ"を計量 $g = \mathrm{diag}(1, -1, -1, -1)$ を用いて定義する：
+            \item 四元ベクトル $a \in \bm{M}$ の"大きさ"を計量 $g = \mathrm{diag}(1, -1, -1, -1)$ を用いて定義する：
             \begin{equation*}
-                \norm{a}^2 = a^\mu a^\nu \tensor{g}{_\mu_\nu} = (a_0)^2-(a_1)^2-(a_2)^2-(a_3)^2
+                \norm{a}^2 =  \tensor{g}{_\mu_\nu} a^\mu a^\nu  = (a_0)^2-(a_1)^2-(a_2)^2-(a_3)^2
             \end{equation*}
+            \item $g$ により、$\bm{M}$の元である反変ベクトルとその双対空間 $\bm{M}^*$ の元である共変ベクトルに1対1の対応関係を作ることができる：
+            \begin{align*}
+                  a_\mu &= g_{\mu\nu} a^\nu = [a_0, a_1, a_2, a_3]\\
+                  a^\mu &= g^{\mu\nu} a_\nu = [a_0, a_1, a_2, a_3]
+            \end{align*}
         \end{itemize}        
     \end{block}
 \end{frame}
 
 \begin{frame}{特殊相対性理論の舞台}
-    \begin{block}{ミンコフスキー空間$\bm{M}$}
+    \begin{block}{相対論的な物理の記述}
+        ミンコフスキー空間$M$とその双対空間$M^*$を用いて物理を記述していく\\
+        物理では基底を明記せずに係数だけを書くことが多い
         \begin{itemize}
-            \item $g$ により、$\bm{M}$の元である共変ベクトルとその双対空間 $\bm{M}^*$ の元である双対ベクトルに1対1の対応関係を作ることができる：
-            \begin{equation*}
-                  a_\mu = g_{\mu\nu} a^\nu = (a_0, a_1, a_2, a_3)
-            \end{equation*}
-            \item 物理的な対象は$\bm{M}$と$\bm{M}^*$やそれらのテンソル積を用いて表すことができる，物理では係数のみを書いて計算していくことが多い。
+            \item スカラー $s$
+            \item 反変ベクトル$a^\mu\in\bm{M}$と共変ベクトル$a_\mu\in\bm{M}$
+            \item 2階テンソル$\tensor{T}{^\mu^\nu}\in\bm{M}\otimes\bm{M}$,\quad$\tensor{T}{_\mu_\nu}\in\bm{M}^*\otimes\bm{M}^*$,\quad\dots
+            \item n階テンソル$\tensor{T}{^{\mu_1}^{\mu_2}^{ \dots}^{\mu_n}}\in \bm{M}\otimes\bm{M}\dots \otimes\bm{M}$
         \end{itemize}
+    に物理量を対応させる
     \end{block}
 \end{frame}
 
@@ -222,7 +230,7 @@
 \begin{frame}{最小作用の原理とは}
     \begin{block}{最小作用の原理}
         系が時間発展するとき，実現する時間発展の作用の変分
-        \footnote{作用の変分:考える系の時間発展と，少しだけ変化させた系の時間発展での作用の差のこと}
+        \footnote{作用の変分:系のある時間発展と，少しだけ変化させた系の時間発展での作用の差のこと}
         は$\delta I=0$となる。
     \end{block}
 ニュートン力学の場合は最小作用の原理から運動方程式(オイラーラグランジュ方程式)を導出できる。
@@ -250,9 +258,26 @@
 
 %===============================================================
 \section{質点の時間発展}
+
 \begin{frame}{質点の時間発展}
+    \begin{block}{ミンコフスキー空間での質点の運動の記述}
+        質点の運動はミンコフスキー空間での曲線(世界線)として表される。\\
+        弧長パラメータ
+        $\mathrm{d}s = \sqrt{\tensor{g}{_\mu_\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu}=\sqrt{\mathrm{d}x_\nu\mathrm{d}x^\nu}$
+        を用いて$x^\mu(s)$と媒介変数表示して曲線を表す。
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{質点の時間発展}
+    %\vspace{-3cm}
     自由粒子の時間発展を表す作用がどのようになるのかを考える。\\
-    自由粒子は空間中では等速直線運動しかしない。つまり，ミンコフスキー空間上で粒子の世界線が直線になる運動が最小になるように作用を選ぶ必要がある。
+    \begin{itemize}
+        \item 時空間の並進対称性，回転対称性を持つ
+        \item ローレンツスカラーである
+        \item 等速直線運動が再現される
+    \end{itemize}
+    といった条件が科される。
 \end{frame}
 
 
