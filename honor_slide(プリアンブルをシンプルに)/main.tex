@@ -267,6 +267,13 @@
         を用いて$x^\mu(s)$と媒介変数表示して曲線を表す。
     \end{block}
 
+    \begin{tikzpicture}[scale = 0.15]
+        \draw[->,>=stealth,thick](-10,0)--(10,0)node[right]{$x^i$}; %x^i軸
+        \draw[->,>=stealth,thick](0,-10)--(0,10)node[above]{$x^0$}; %x^0軸
+        \draw[thick](-7,-10) to[out=90-10,in=270-30] (0,0);
+        \draw[thick](0,0) to[out = 90-30,in =-90](5,10);
+    \end{tikzpicture}
+
 \end{frame}
 
 \begin{frame}{質点の時間発展}
