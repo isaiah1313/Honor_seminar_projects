@@ -125,15 +125,6 @@
 \section{特殊相対性理論の舞台}
 
 \begin{frame}{特殊相対性理論の舞台}
-    \begin{block}{特殊相対性理論の出発点}
-        \begin{itemize}
-            \item 宇宙の情報の伝達速度には上限がある
-            \item 
-        \end{itemize}
-    \end{block}
-\end{frame}
-
-\begin{frame}{特殊相対性理論の舞台}
     \begin{block}{ニュートン力学の舞台}
         空間3次元の実ベクトル空間$\bm{V}$を考える
         \begin{itemize}
@@ -150,6 +141,14 @@
     \end{block}
 \end{frame}
 
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{特殊相対性理論の出発点}
+        \begin{itemize}
+            \item 全ての慣性系\footnote{力が加わらない物体が静止あるいは等速直線運動をするように見える系のこと}で物理法則は同じ形をしている
+            \item 相互作用の伝達速度には上限が存在する
+        \end{itemize}
+    \end{block}
+\end{frame}
 
 \begin{frame}{特殊相対性理論の舞台}
     \begin{block}{ミンコフスキー空間 $\bm{M}$}
@@ -159,9 +158,35 @@
             \begin{equation*}
                 x = [x^\mu] = [ct, x, y, z]^T \quad (\mu = 0, 1, 2, 3)
             \end{equation*}
-            \item 質点の運動はミンコフスキー空間上の曲線として表される。
+            \item 質点の運動はミンコフスキー空間上では曲線として表される。
         \end{itemize}
     \end{block}
+\end{frame}
+
+\begin{frame}{特殊相対性理論の舞台}
+    特殊相対性理論で考える座標変換は
+    \begin{itemize}
+        \item 同じ慣性系での座標軸変換
+        \item 異なる速度で動く慣性系との座標変換
+    \end{itemize}
+    の2種類である。これらの座標変換をまとめてローレンツ変換と呼ぶ。\\
+    この座標変換は線形であり，2階テンソルを用いて表現することができる。
+\end{frame}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{ローレンツ変換}
+        \begin{itemize}
+            \item 元位置ベクトル$x^\mu$を異なる慣性系から見た時の4元位置ベクトル$x'^\mu$はローレンツ変換テンソル$\Lambda=\tensor{\Lambda}{_\mu_\nu}$を用いて
+            \begin{align*}
+                x'^\mu = x^\nu \tensor{\Lambda}{^\mu_\nu}
+            \end{align*}
+        と求められる。\\
+        \item ローレンツ変換の前後で$g=\mathrm{diag}(+1,-1,-1,-1)$が変化しない:
+            \begin{align*}
+                \tensor{g}{_\mu_\nu}&=\tensor{g}{_\rho_\sigma}\tensor{\Lambda}{^\rho_\mu}\tensor{\Lambda}{^\sigma_\nu}\\
+            \end{align*}
+        \end{itemize}
+    \end{block}    
 \end{frame}
 
 \begin{frame}{特殊相対性理論の舞台}
@@ -171,14 +196,40 @@
             \begin{equation*}
                 \norm{a}^2 =  \tensor{g}{_\mu_\nu} a^\mu a^\nu  = (a_0)^2-(a_1)^2-(a_2)^2-(a_3)^2
             \end{equation*}
-            \item $g$ により、$\bm{M}$の元である反変ベクトルとその双対空間 $\bm{M}^*$ の元である共変ベクトルに1対1の対応関係を作ることができる：
+            \item ローレンツ変換の前後で四元ベクトルの"大きさ"は変化しない:
             \begin{align*}
-                  a_\mu &= g_{\mu\nu} a^\nu = [a_0, a_1, a_2, a_3]\\
-                  a^\mu &= g^{\mu\nu} a_\nu = [a_0, a_1, a_2, a_3]
+                \norm{a}^2=\tensor{g}{_\mu_\nu} a^\mu a^\nu&=\tensor{g}{_\mu_\nu} a'^\mu a'^\nu=\norm{a'}^2\\
+                \iff
+                \tensor{g}{_\mu_\nu}&=\tensor{g}{_\rho_\sigma} \tensor{\Lambda}{^\rho_\mu}\tensor{\Lambda}{^\sigma_\nu}
             \end{align*}
+            
         \end{itemize}        
     \end{block}
 \end{frame}
+
+            %\item $g$ により、$\bm{M}$の元である反変ベクトルとその双対空間 $\bm{M}^*$ の元である共変ベクトルに1対1の対応関係を作ることができる：
+            %\begin{align*}
+            %      a_\mu &= g_{\mu\nu} a^\nu = [a_0, a_1, a_2, a_3]\\
+            %      a^\mu &= g^{\mu\nu} a_\nu = [a_0, a_1, a_2, a_3]
+            %\end{align*}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{双対空間$\bm{M}^*$}
+        \begin{itemize}
+        \item $a^\mu\in\bm{M}$を計量$g$を用いて添字を下げる:
+            \begin{align*}
+                a_\nu=\tensor{g}{_\mu_\nu} a^\mu
+            \end{align*}
+            下付き添字のベクトルの集合を$M$の双対空間と呼び$\bm{M}^*$と書く。
+        \item $\tensor{g}{_\mu_\nu}$の逆写像として上付きの計量$\tensor{g}{^\mu^\nu}$を定義する。:
+        \begin{align*}
+            a^\mu=\tensor{g}{^\mu^\nu}a_\nu
+        \end{align*}
+        \end{itemize}
+    \end{block}
+これによって$\bm{M}$と$\bm{M}^*$に1対1の対応関係を作ることができた。
+\end{frame}
+
 
 \begin{frame}{特殊相対性理論の舞台}
     \begin{block}{相対論的な物理の記述}
@@ -192,22 +243,6 @@
         \end{itemize}
     に物理量を対応させる
     \end{block}
-\end{frame}
-
-\begin{frame}{特殊相対性理論の舞台}
-    \begin{block}{ミンコフスキー空間$\bm{M}$}
-        \begin{itemize}
-            \item 慣性系同士の4元位置ベクトル$x^\mu$はローレンツ変換テンソル$\Lambda=\tensor{\Lambda}{_\mu_\nu}$を用いて
-            \begin{align*}
-                x'^\mu = x^\nu \tensor{\Lambda}{^\mu_\nu}
-            \end{align*}
-            として計算できる。他の反変ベクトルや共変ベクトル，テンソルも同様に変換される。
-            \item ローレンツ変換テンソルは計量$g$を不変に保つ：
-            \begin{align*}
-                \tensor{g}{_\mu_\nu}=\tensor{g}{_\rho_\sigma}\tensor{\Lambda}{^\rho_\mu}\tensor{\Lambda}{^\sigma_\nu}
-            \end{align*}
-        \end{itemize}
-    \end{block}    
 \end{frame}
 
 %===============================================================
@@ -260,21 +295,39 @@
 \section{質点の時間発展}
 
 \begin{frame}{質点の時間発展}
-    \begin{block}{ミンコフスキー空間での質点の運動の記述}
-        質点の運動はミンコフスキー空間での曲線(世界線)として表される。\\
-        弧長パラメータ
-        $\mathrm{d}s = \sqrt{\tensor{g}{_\mu_\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu}=\sqrt{\mathrm{d}x_\nu\mathrm{d}x^\nu}$
-        を用いて$x^\mu(s)$と媒介変数表示して曲線を表す。
-    \end{block}
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        \begin{block}{ミンコフスキー空間での質点の運動}
+            質点の運動は時空図の曲線（世界線）\\
+            として表示される。弧長パラメータ：
+            \begin{align*}
+                \mathrm{d}s = \sqrt{\tensor{g}{_\mu_\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu}=\sqrt{\mathrm{d}x^\mu\mathrm{d}x_\mu}
+            \end{align*}
+            を用いて$x^\mu(s)$ と媒介変数表示
+        \end{block}
+        
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale = 0.3]
+                %x軸
+                \draw[->,>=stealth,thick](-8,0)--(7.5,0) node[right, font=\small]{$x^i=[x,y,z]$};
+                \draw[->,>=stealth,thick](0,-8)--(0,8) node[above, font=\small]{$x^0=ct$};
+                \draw(0,0) node[above left]{O};
 
-    \begin{tikzpicture}[scale = 0.15]
-        \draw[->,>=stealth,thick](-10,0)--(10,0)node[right]{$x^i$}; %x^i軸
-        \draw[->,>=stealth,thick](0,-10)--(0,10)node[above]{$x^0$}; %x^0軸
-        \draw[thick](-7,-10) to[out=90-10,in=270-30] (0,0);
-        \draw[thick](0,0) to[out = 90-30,in =-90](5,10);
-    \end{tikzpicture}
+                %粒子
+                \draw[thick, red, line width=1.2pt](-6,-8) to[out=85,in=270-45] (0,0) to[out=90-45,in=-90](4,8); 
 
+                \fill(3.9,6.5) circle(10pt);%粒子の点
+                \draw[thick](3.9,6.5)--(7,9)node[fill=white,right]{$x^\mu(s)$};
+
+                \draw[thick,dashed](0,0) to[out=10,in=270+15](3.9,6.5);%長さを表す破線
+                \draw(6,2)node[fill=white]{経路長$s$};
+                
+            \end{tikzpicture}
+        \end{center}
+    \end{columns}
 \end{frame}
+
 
 \begin{frame}{質点の時間発展}
     %\vspace{-3cm}
@@ -290,7 +343,7 @@
 
 %===============================================================
 \section{電磁場の時間発展}
-\begin{frame}{質点の時間発展}
+\begin{frame}{電磁場の時間発展}
     
 \end{frame}
 
