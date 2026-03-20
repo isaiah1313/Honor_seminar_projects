@@ -252,12 +252,12 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
         系の状態によって定まるエネルギーの次元を持つ量である\\
     \end{block}
 ニュートン力学では$L(x,v)=\frac{1}{2}m v^2 -U(x)$と書けることが多い。
-    \begin{block}{作用$I$}
+    \begin{block}{作用$S$}
         系の各瞬間のラグラジアンの値を時間積分した値：
         \begin{align*}
-            I = \int_{t_0}^{t_1} L \>\mathrm{d}t
+            S = \int_{t_0}^{t_1} L \>\mathrm{d}t
         \end{align*}
-        系の時間発展が定まると作用$I$の値も一意に定まる
+        系の時間発展が定まると作用$S$の値も一意に定まる
     \end{block}
 \end{frame}
 
@@ -266,11 +266,11 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     \begin{block}{最小作用の原理}
         系が時間発展するとき，実現する時間発展の作用の変分
         \footnote{作用の変分:系のある時間発展と，少しだけ変化させた系の時間発展での作用の差のこと}
-        は$\delta I=0$となる。
+        は$\delta S=0$となる。
     \end{block}
 ニュートン力学の場合は最小作用の原理から運動方程式(オイラーラグランジュ方程式)を導出できる。
 \begin{align*}
-    0 = \delta I
+    0 = \delta S
     &= \int_{t_0}^{t_1}L(x+\delta x, v + \delta v)\>\mathrm{d}t - \int_{t_0}^{t_1} L(x,v) \>\mathrm{d}t \\
     &= \int_{t_0}^{t_1} \delta x \left[\diff{}{t}\pdiff{L}{v}-\pdiff{L}{x}\right]\>\mathrm{d}t
 \end{align*}
@@ -379,6 +379,13 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
         \end{align*}
         よって時空間の回転対称性から\\
         作用は4元ベクトル自体は現れず，そのノルムのみに依存するとわかる。
+    \end{block}
+\end{frame}
+
+\begin{frame}{質点の時間発展}
+    これまでの考察から作用$S$は
+    \begin{block}{直線を再現する作用}
+        
     \end{block}
 \end{frame}
 
