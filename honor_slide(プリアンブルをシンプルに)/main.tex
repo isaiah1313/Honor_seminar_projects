@@ -155,7 +155,7 @@
         \begin{itemize}
             \item 位置と時間をまとめて \textbf{4元位置ベクトル} $x \in \bm{M}$ で表す：
             \begin{equation*}
-                x = [x^\mu] = [ct, x, y, z]^T \quad (\mu = 0, 1, 2, 3)
+                x = [x^\mu] = [ct, x, y, z]^T=[ct,\bm{r}] \quad (\mu = 0, 1, 2, 3)
             \end{equation*}
             \item 質点の運動はミンコフスキー空間上では曲線として表される。
         \end{itemize}
@@ -350,21 +350,21 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     といった条件が科される。
 \end{frame}
 
-\begin{frame}{質点の時間発展}
-    \begin{block}{時空間の並進対称性}
-        時空間の系の並進の表現方法を考える。\\
-        世界線$x^\mu(s)$を定ベクトル$a^\mu$だけ並進させると：
-        \begin{align*}
-            x'^\mu=x^\mu+a^\mu
-        \end{align*}
-        この変換によって座標は変化するが4元速度は変化しない：
-        \begin{align*}
-            u'^\mu=\diff{(x^\mu+a^\mu)}{s}=u^\mu
-        \end{align*}
-        よって時空間の並進対称性から\\
-        作用は座標$x^\mu$が陽に現れず，4元速度$u^\mu$に依存すると考えられる。
-    \end{block}
-\end{frame}
+%\begin{frame}{質点の時間発展}
+%    \begin{block}{時空間の並進対称性}
+%        時空間の系の並進の表現方法を考える。\\
+%        世界線$x^\mu(s)$を定ベクトル$a^\mu$だけ並進させると：
+%        \begin{align*}
+%            x'^\mu=x^\mu+a^\mu
+%        \end{align*}
+%        この変換によって座標は変化するが4元速度は変化しない：
+%        \begin{align*}
+%            u'^\mu=\diff{(x^\mu+a^\mu)}{s}=u^\mu
+%        \end{align*}
+%        よって時空間の並進対称性から\\
+%        作用は座標$x^\mu$が陽に現れず，4元速度$u^\mu$に依存すると考えられる。
+%    \end{block}
+%\end{frame}
 
 \begin{frame}{質点の時間発展}
     \begin{block}{時空間の回転対称性}
@@ -383,10 +383,33 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \end{frame}
 
 \begin{frame}{質点の時間発展}
-    これまでの考察から作用$S$は4元速度のノルム$u^\mu u_\mu$が現れると考えられる。\\
-    \begin{block}{直線を再現する作用}
-        これらのことを踏まえると作用は経路長を選ぶと良さそうである。
-    \end{block}
+    作用として経路長$\int \mathrm{d}s$に比例する量を選べば，作用の停留条件は等速直線運動になると考えられる。\\
+    次元調整と後のニュートン力学との整合性のために$-mc$をかけて，
+\begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{align*}
+        S
+        &=-mc\int_{A}^{B}\>\mathrm{d}s\\
+        &=-mc\int_{A}^{B} \sqrt{c^2\mathrm{d}t^2-\mathrm{d}\bm{r}^2}\\
+        &=-mc^2\int_{t_A}^{t_B}\sqrt{1-\left(\frac{\bm{v}}{c}\right)^2}\>\mathrm{d}t
+    \end{align*}
+    \column{0.5\textwidth}
+        \begin{tikzpicture}[scale = 0.25]
+            %x軸
+            \draw[->,>=stealth,thick](-3,0)--(10,0) node[right, font=\small]{$x^i=[x,y,z]$};
+            \draw[->,>=stealth,thick](0,-4)--(0,10) node[above, font=\small]{$x^0=ct$};
+            \draw(0,0) node[above left]{O};
+            
+            %世界線
+            \fill(8,8) [red]circle(10pt)node[black,above right]{B};
+            \fill(2,-2) [red]circle(10pt)node[black,below]{A};
+            \draw[thick,red,line width=1.2pt](2,-2)--(8,8); %実現する経路
+            \draw[thick,blue,dotted,line width=1.2pt](2,-2)to[out=30,in=-90](8,8); %変分した経路
+            \draw[thick,blue,dotted,line width=1.2pt](2,-2)to[out=90,in=-90](8,8);
+            \draw[thick](6,4.5)--(10,4)node[right]{実際の経路};
+            \draw[thick](3.8,-1)--(6,-3)node[right]{変分した経路};
+        \end{tikzpicture}
+\end{columns}
 \end{frame}
 
 %===============================================================
