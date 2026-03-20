@@ -1,14 +1,6 @@
 {
     "latex-workshop.latex.recipes": [
         {
-            "name": "uplatex -> dvipdfmx",
-            "tools": [
-                "uplatex",
-                "uplatex",
-                "dvipdfmx"
-            ]
-        },
-        {
             "name": "latexmk (LuaLaTeX)",
             "tools": [
                 "latexmk-lualatex"
@@ -16,23 +8,6 @@
         }
     ],
     "latex-workshop.latex.tools": [
-        {
-            "name": "uplatex",
-            "command": "uplatex",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "%DOC%"
-            ]
-        },
-        {
-            "name": "dvipdfmx",
-            "command": "dvipdfmx",
-            "args": [
-                "%DOCFILE%.dvi"
-            ]
-        },
         {
             "name": "latexmk-lualatex",
             "command": "latexmk",
@@ -48,10 +23,10 @@
             ]
         }
     ],
-    "latex-workshop.latex.recipe.default": "uplatex -> dvipdfmx",
-
+    // --- 【ここがポイント】校閲を完全にオフにする ---
     "latex-workshop.linting.chktex.enabled": false,
-
+    
+    // 保存時の自動ビルド設定
     "latex-workshop.latex.autoBuild.run": "onSave",
     "latex-workshop.message.error.show": true,
     "latex-workshop.message.warning.show": false
