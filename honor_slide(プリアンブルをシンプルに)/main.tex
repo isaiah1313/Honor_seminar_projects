@@ -297,7 +297,7 @@
 \begin{frame}{質点の時間発展}
     \begin{columns}[T]
         \column{0.55\textwidth}
-        \begin{block}{ミンコフスキー空間での質点の運動}
+        \begin{block}{質点の運動の表現方法}
             質点の運動は時空図の曲線（世界線）\\
             として表示される。弧長パラメータ：
             \begin{align*}
@@ -326,6 +326,16 @@
             \end{tikzpicture}
         \end{center}
     \end{columns}
+\end{frame}
+
+\begin{frame}{質点の時間発展}
+    \begin{block}{質点の運動の表現方法}
+        質点の時間発展は$x^\mu(s)$と表すことができた。\\
+        この時，$u^\mu(s)=\diff{x^\mu}{s}$はミンコフスキー空間での"速度"を表す曲線の接ベクトルになっている。$u^\mu(s)$のノルムは
+        \begin{align*}
+            \norm{u^\mu}^2=\tensor{g}{_\mu_\nu}u^\mu u^\nu=\tensor{g}{_\mu_\nu}\diff{x^\mu}{s}\diff{x^\nu}{s}=\frac{\tensor{g}{_\mu_\nu}\mathrm{d}x^\mu \mathrm{d}x^\nu}{\mathrm{d}s^2}=\frac{\mathrm{d}s^2}{\mathrm{d}s^2}=1
+        \end{align*}
+    \end{block}
 \end{frame}
 
 
