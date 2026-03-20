@@ -123,22 +123,22 @@
 %===============================================================
 \section{特殊相対性理論の舞台}
 
-\begin{frame}{特殊相対性理論の舞台}
-    \begin{block}{ニュートン力学の舞台}
-        空間3次元の実ベクトル空間$\bm{V}$を考える
-        \begin{itemize}
-            \item  空間上の位置を位置ベクトル$x\in\bm{V}$で表す：
-            \begin{align*}
-                x = [x^i] = [x,y,z]^T\quad(i=1,2,3)
-            \end{align*}
-            \item 時刻$t$は単なる実数パラメータで質点の運動は$\bm{r}(t)\in\bm{V}$と表す。
-            \item ベクトル$a\in\bm{V}$の"大きさ"を計量$I=\mathrm{diag}(1,1,1)$を用いて定義する：
-            \begin{align*}
-                \norm{a}^2 = \tensor{I}{_i_j} a^i a^j  = (a_1)^2+(a_2)^2+(a_3)^2
-            \end{align*}
-        \end{itemize}        
-    \end{block}
-\end{frame}
+%\begin{frame}{特殊相対性理論の舞台}
+%    \begin{block}{ニュートン力学の舞台}
+%        空間3次元の実ベクトル空間$\bm{V}$を考える
+%        \begin{itemize}
+%            \item  空間上の位置を位置ベクトル$x\in\bm{V}$で表す：
+%            \begin{align*}
+%                x = [x^i] = [x,y,z]^T\quad(i=1,2,3)
+%            \end{align*}
+%            \item 時刻$t$は単なる実数パラメータで質点の運動は$\bm{r}(t)\in\bm{V}$と表す。
+%            \item ベクトル$a\in\bm{V}$の"大きさ"を計量$I=\mathrm{diag}(1,1,1)$を用いて定義する：
+%            \begin{align*}
+%                \norm{a}^2 = \tensor{I}{_i_j} a^i a^j  = (a_1)^2+(a_2)^2+(a_3)^2
+%            \end{align*}
+%        \end{itemize}        
+%    \end{block}
+%\end{frame}
 
 \begin{frame}{特殊相対性理論の舞台}
     \begin{block}{特殊相対性理論の出発点}
@@ -351,7 +351,25 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \end{frame}
 
 \begin{frame}{質点の時間発展}
-    
+    \begin{block}{時空間の並進対称性}
+        時空間の系の並進の表現方法を考える。\\
+        世界線$x^\mu(s)$を定ベクトル$a^\mu$だけ並進させると：
+        \begin{align*}
+            x'^\mu=x^\mu+a^\mu
+        \end{align*}
+        この変換によって座標は変化するが四元速度は変化しない：
+        \begin{align*}
+            u'^\mu=\diff{(x^\mu+a^\mu)}{s}=u^\mu
+        \end{align*}
+        よって時空間の並進対称性から\\
+        作用は座標$x^\mu$が陽に現れず，4元速度$u^\mu$に依存すると考えられる。
+    \end{block}
+\end{frame}
+
+\begin{frame}{質点の時間発展}
+    \begin{block}{時空間の回転対称性}
+        
+    \end{block}
 \end{frame}
 
 %===============================================================
