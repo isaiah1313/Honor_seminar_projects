@@ -49,6 +49,7 @@
 \setbeamerfont{frametitle}{size=\Large, series=\bfseries}
 \setbeamersize{text margin left=1cm, text margin right=1cm} %スライドの両端1cmを白紙にして寄りすぎないようにする
 \setbeamertemplate{blocks}[rounded][shadow=false] %blockの下側の影を消す
+\setbeamertemplate{items}[square] %箇条書きのスタイルを変更
 
 % 7. タイトル情報
 \title{オナーセミナー最終報告}
@@ -76,7 +77,7 @@
 
 
 %目次スライド
-\begin{frame}
+\begin{frame}{目次}
     \tableofcontents
 \end{frame}
 
@@ -144,7 +145,7 @@
     \begin{block}{特殊相対性理論の出発点}
         \begin{itemize}
             \item 全ての慣性系\footnote{力が加わらない物体が静止あるいは等速直線運動をするように見える系のこと}で物理法則は同じ形をしている
-            \item 相互作用の伝達速度には上限が存在する
+            \item 相互作用の伝達速度には上限が存在する%光の速度が不変で、それは...にした方が親切かも
         \end{itemize}
     \end{block}
 \end{frame}
@@ -165,7 +166,7 @@
 \begin{frame}{特殊相対性理論の舞台}
     特殊相対性理論で考える座標変換は
     \begin{itemize}
-        \item 同じ慣性系での座標軸変換
+        \item 同じ慣性系での3次元の回転変換
         \item 異なる速度で動く慣性系との座標変換
     \end{itemize}
     の2種類である。これらの座標変換をまとめてローレンツ変換と呼ぶ。\\
