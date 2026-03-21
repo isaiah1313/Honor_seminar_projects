@@ -272,7 +272,7 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \begin{align*}
     0 = \delta S
     &= \int_{t_0}^{t_1}L(x+\delta x, v + \delta v)\>\mathrm{d}t - \int_{t_0}^{t_1} L(x,v) \>\mathrm{d}t \\
-    &= \int_{t_0}^{t_1} \delta x \left[\diff{}{t}\pdiff{L}{v}-\pdiff{L}{x}\right]\>\mathrm{d}t
+    &= \int_{t_0}^{t_1} \delta x \left[\pdiff{L}{x}-\diff{}{t}\pdiff{L}{v}\right]\>\mathrm{d}t
 \end{align*}
 \end{frame}
 
@@ -412,10 +412,23 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \end{columns}
 \end{frame}
 
+\begin{frame}{質点の時間発展}
+    よって，相対論的な自由粒子のラグラジアンは
+    \begin{align*}
+        L(\bm{r},\bm{v})
+        =-mc^2\sqrt{1-\left(\frac{\bm{v}}{c}\right)^2}
+    \end{align*}
+    であることがわかった。ここから最小作用の原理から導出されるオイラーラグランジュ方程式に代入すると運動方程式：
+    \begin{align*}
+        \diff{}{t}\left(\frac{\bm{v}}{\sqrt{1-\left(\frac{\bm{v}}{c}\right)^2}}\right)=0
+    \end{align*}
+    を得ることができる。
+\end{frame}
+
 %===============================================================
 \section{電磁場の時間発展}
 \begin{frame}{電磁場の時間発展}
-
+    
 \end{frame}
 
 \end{document}
