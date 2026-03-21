@@ -423,13 +423,25 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     \begin{align*}
         \diff{}{t}\left(\frac{\bm{v}}{\sqrt{1-\left(\frac{\bm{v}}{c}\right)^2}}\right)=0
     \end{align*}
-    を得ることができる。
+    を得ることができる。これを解くと等速直線運動になる。
 \end{frame}
 
 %===============================================================
 \section{電磁場の時間発展}
 \begin{frame}{電磁場の時間発展}
-    
+    電磁場の時間発展を決定するのはMaxwell方程式：
+    \begin{align*}
+    \nabla \cdot \mathbf{E} &= 4\pi\rho \\
+    \nabla \cdot \mathbf{B} &= 0 \\
+    \nabla \times \mathbf{E} &= -\frac{1}{c}\frac{\partial \mathbf{B}}{\partial t} \\
+    \nabla \times \mathbf{B} &= \frac{4\pi}{c}\mathbf{j} + \frac{1}{c}\frac{\partial \mathbf{E}}{\partial t}
+    \end{align*}
+    である。\\
+    ここから出発して電磁場の作用がどのように書けるのかを考える。
+\end{frame}
+
+\begin{frame}
+    複数の点電荷が電磁場と共存している系を考える
 \end{frame}
 
 \end{document}
