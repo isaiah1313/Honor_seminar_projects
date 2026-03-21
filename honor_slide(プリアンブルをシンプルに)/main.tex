@@ -251,12 +251,12 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 %===============================================================
 \section{最小作用の原理とは}
 \begin{frame}{最小作用の原理とは}
-    \begin{block}{ラグラジアン$L$}
+    \begin{block}{ラグランジアン$L$}
         系の状態によって定まるエネルギーの次元を持つ量である\\
     \end{block}
 ニュートン力学では$L(x,v)=\frac{1}{2}m v^2 -U(x)$と書けることが多い。
     \begin{block}{作用$S$}
-        系の各瞬間のラグラジアンの値を時間積分した値：
+        系の各瞬間のラグランジアンの値を時間積分した値：
         \begin{align*}
             S = \int_{t_0}^{t_1} L \>\mathrm{d}t
         \end{align*}
@@ -280,7 +280,7 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \end{frame}
 
 \begin{frame}{最小作用の原理とは}
-    \begin{block}{作用，ラグラジアンの選び方}
+    \begin{block}{作用，ラグランジアンの選び方}
         最小作用の原理の結果，現実世界を再現できるようなものであるなら作用はどのようなものを選んでも良い。\\
         一般な系決める方法は存在しないが，
         \begin{itemize}
@@ -288,7 +288,7 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
             \item 作用の次元が$\mathrm{ML^2T^{-1}}$になる
             \item 作用がローレンツスカラーである\footnote{相対性原理から作用がローレンツスカラーであることが導ける}
         \end{itemize}
-        などの要求からある程度の任意性を除いてラグラジアンや作用を定めることができる。 %ここは怪しい
+        などの要求からある程度の任意性を除いてラグランジアンや作用を定めることができる。 %ここは怪しい
     \end{block}
 \end{frame}
 
@@ -393,9 +393,10 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     \begin{align*}
         S
         &=-mc\int_{A}^{B}\>\mathrm{d}s\\
-        &=-mc\int_{A}^{B} \sqrt{c^2\mathrm{d}t^2-\mathrm{d}\bm{r}^2}\\
-        &=-mc^2\int_{t_A}^{t_B}\sqrt{1-\left(\frac{\bm{v}}{c}\right)^2}\>\mathrm{d}t
+        %&=-mc\int_{A}^{B} \sqrt{c^2\mathrm{d}t^2-\mathrm{d}\bm{r}^2}\\
+        %&=-mc^2\int_{t_A}^{t_B}\sqrt{1-\left(\frac{\bm{v}}{c}\right)^2}\>\mathrm{d}t
     \end{align*}
+    と書かれることがわかる。
     \column{0.5\textwidth}
         \begin{tikzpicture}[scale = 0.25]
             %x軸
@@ -415,35 +416,81 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \end{columns}
 \end{frame}
 
-\begin{frame}{質点の時間発展}
-    よって，相対論的な自由粒子のラグラジアンは
-    \begin{align*}
-        L(\bm{r},\bm{v})
-        =-mc^2\sqrt{1-\left(\frac{\bm{v}}{c}\right)^2}
-    \end{align*}
-    であることがわかった。ここから最小作用の原理から導出されるオイラーラグランジュ方程式に代入すると運動方程式：
-    \begin{align*}
-        \diff{}{t}\left(\frac{\bm{v}}{\sqrt{1-\left(\frac{\bm{v}}{c}\right)^2}}\right)=0
-    \end{align*}
-    を得ることができる。これを解くと等速直線運動になる。
-\end{frame}
-
 %===============================================================
 \section{電磁場の時間発展}
+
+\begin{frame}{電磁場の時間発展}
+    質点の作用は系の状態$\bm{r},\bm{v}$の関数であるラグランジアン$L(\bm{r},\bm{v})$を時間積分した量であった。
+    \begin{block}{場の作用の考え方}
+        場を含む系では系が持つ自由度は，空間に分布する関数であり連続無限である。\\
+        そのため場のラグランジアン$L$は，空間の各点の場の状態で定まる量であるラグランジアン密度$\mathcal{L}$の体積分で定義される。\\
+        \begin{align*}
+            L=\int \mathcal{L}\mathrm{d}V
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    \begin{block}{場の作用の考え方}
+        そして，作用$S$はラグランジアンの時間積分なので
+        \begin{align*}
+            S=\int L\mathrm{d}t=\iint\mathcal{L}\>\mathrm{d}V\mathrm{d}t=\frac{1}{c}\int \mathcal{L}\>\mathrm{d}^4x
+        \end{align*}
+        のように，4次元体積分で作用を表すことができる。
+    \end{block}
+\end{frame}
+
 \begin{frame}{電磁場の時間発展}
     電磁場の時間発展を決定するのはMaxwell方程式：
     \begin{align*}
-    \nabla \cdot \mathbf{E} &= 4\pi\rho \\
-    \nabla \cdot \mathbf{B} &= 0 \\
-    \nabla \times \mathbf{E} &= -\frac{1}{c}\frac{\partial \mathbf{B}}{\partial t} \\
-    \nabla \times \mathbf{B} &= \frac{4\pi}{c}\mathbf{j} + \frac{1}{c}\frac{\partial \mathbf{E}}{\partial t}
+    \nabla \cdot \bm{E} &= 4\pi\rho \\
+    \nabla \cdot \bm{B} &= 0 \\
+    \nabla \times \bm{E}+\frac{1}{c}\pdiff{\bm{B}}{t} &= 0 \\
+    \nabla \times \bm{B}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
     \end{align*}
     である。\\
     ここから出発して電磁場の作用がどのように書けるのかを考える。
 \end{frame}
 
-\begin{frame}
-    複数の点電荷が電磁場と共存している系を考える
+
+
+\begin{frame}{電磁場の時間発展}
+    Maxwell方程式を式変形するとポテンシャル$\phi,\bm{A}$を用いて$\bm{E},\bm{B}$は
+    \begin{align*}
+        \bm{E}&=-\nabla\phi-\pdiff{\bm{A}}{t}\\
+        \bm{B}&=\nabla\times\bm{A}
+    \end{align*}
+    と書くことができ，電磁場の情報を全て持つ$\phi,\bm{A}$には以下の条件が満たされる：
+    \begin{align*}
+        \left(\frac{1}{c}\pdiff{}{t}-\nabla^2\right)\phi&=4\pi\rho\\
+        \left(\frac{1}{c}\pdiff{}{t}-\nabla^2\right)\bm{A}&=4\pi\frac{\bm{J}}{c}\\
+        \frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}&=0
+    \end{align*}
 \end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    $\partial_\mu=\pdiff{}{x^\mu},\>A^\mu=[\phi,\bm{A}],\>j^\mu=[\rho,\frac{\bm{J}}{c}]$と定義すると先ほどの条件は
+    \begin{align*}
+        \partial_\mu\partial^\mu A^\nu&=j^\nu\\
+        \partial_\mu A^\mu&=0
+    \end{align*}
+    とまとめることができる。
+\end{frame}
+
+\begin{frame}
+    複数の点電荷が電磁場と共存している系を考える。
+    作用は
+    \begin{itemize}
+        \item 粒子単独の作用$S_m$
+        \item 電磁場単独の作用$S_f$
+        \item 粒子と電磁場の相互作用項$S_{mf}$
+    \end{itemize}
+    を用いて
+    \begin{align*}
+        S_{all}=S_m+S_{mf}+S_f
+    \end{align*}
+    と書けるだろう。\\
+\end{frame}
+
 
 \end{document}
