@@ -175,24 +175,6 @@
     この座標変換は線形であり，2階テンソルを用いて表現することができる。
 \end{frame}
 
-%ローレンツ変換と計量のスライドの順番逆のほうがいいのでは
-
-\begin{frame}{特殊相対性理論の舞台}
-    \begin{block}{ローレンツ変換}
-        \begin{itemize}
-            \item 元位置ベクトル$x^\mu$を異なる慣性系から見た時の4元位置ベクトル$x'^\mu$はローレンツ変換テンソル$\Lambda=\tensor{\Lambda}{_\mu_\nu}$を用いて
-            \begin{align*}
-                x'^\mu = x^\nu \tensor{\Lambda}{^\mu_\nu}
-            \end{align*}
-        と求められる。\\
-        \item ローレンツ変換の前後で$g=\mathrm{diag}(+1,-1,-1,-1)$が変化しない:
-            \begin{align*}
-                \tensor{g}{_\mu_\nu}&=\tensor{g}{_\rho_\sigma}\tensor{\Lambda}{^\rho_\mu}\tensor{\Lambda}{^\sigma_\nu}\\
-            \end{align*}
-        \end{itemize}
-    \end{block}    
-\end{frame}
-
 \begin{frame}{特殊相対性理論の舞台}
     \begin{block}{計量$g$}
         \begin{itemize}
@@ -209,6 +191,22 @@
             
         \end{itemize}        
     \end{block}
+\end{frame}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{ローレンツ変換}
+        \begin{itemize}
+            \item 元位置ベクトル$x^\mu$を異なる慣性系から見た時の4元位置ベクトル$x'^\mu$はローレンツ変換テンソル$\Lambda=\tensor{\Lambda}{_\mu_\nu}$を用いて
+            \begin{align*}
+                x'^\mu = x^\nu \tensor{\Lambda}{^\mu_\nu}
+            \end{align*}
+        と求められる。\\
+        \item ローレンツ変換の前後で$g=\mathrm{diag}(+1,-1,-1,-1)$が変化しない:
+            \begin{align*}
+                \tensor{g}{_\mu_\nu}&=\tensor{g}{_\rho_\sigma}\tensor{\Lambda}{^\rho_\mu}\tensor{\Lambda}{^\sigma_\nu}\\
+            \end{align*}
+        \end{itemize}
+    \end{block}    
 \end{frame}
 
             %\item $g$ により、$\bm{M}$の元である反変ベクトルとその双対空間 $\bm{M}^*$ の元である共変ベクトルに1対1の対応関係を作ることができる：
