@@ -443,9 +443,9 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \begin{frame}{電磁場の時間発展}
     電磁場の時間発展を決定するのはMaxwell方程式：
     \begin{align*}
-    \nabla \cdot \bm{E} &= 4\pi\rho \\
     \nabla \cdot \bm{B} &= 0 \\
     \nabla \times \bm{E}+\frac{1}{c}\pdiff{\bm{B}}{t} &= 0 \\
+    \nabla \cdot \bm{E} &= 4\pi\rho \\
     \nabla \times \bm{B}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
     \end{align*}
     である。\\
@@ -460,21 +460,44 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
         \bm{E}&=-\nabla\phi-\pdiff{\bm{A}}{t}\\
         \bm{B}&=\nabla\times\bm{A}
     \end{align*}
-    と書くことができ，電磁場の情報を全て持つ$\phi,\bm{A}$には以下の条件が満たされる：
+    と書くことができる。このようにするとMaxwell方程式の斉次式：
+    \begin{align*}
+        \nabla \cdot \bm{B} &= 0 \\
+        \nabla \times \bm{E}+\frac{1}{c}\pdiff{\bm{B}}{t} &= 0 \\
+    \end{align*}
+    を自動的に満たすようにできる。
+\end{frame}
+
+
+
+\begin{frame}{電磁場の時間発展}
+    ポテンシャル表記をMaxwell方程式の非斉次式：
+    \begin{align*}
+    \nabla \cdot \bm{E} &= 4\pi\rho \\
+    \nabla \times \bm{B}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
+    \end{align*}
+    に代入して式変形するとポテンシャルが満たす条件を得る：
     \begin{align*}
         \left(\frac{1}{c}\pdiff{}{t}-\nabla^2\right)\phi&=4\pi\rho\\
         \left(\frac{1}{c}\pdiff{}{t}-\nabla^2\right)\bm{A}&=4\pi\frac{\bm{J}}{c}\\
         \frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}&=0
-    \end{align*}
+    \end{align*}    
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
-    $\partial_\mu=\pdiff{}{x^\mu},\>A^\mu=[\phi,\bm{A}],\>j^\mu=[\rho,\frac{\bm{J}}{c}]$と定義すると先ほどの条件は
+    $\partial_\mu=\pdiff{}{x^\mu}$,\\
+    4元ベクトルポテンシャル$A^\mu=[\phi,\bm{A}]$,\\
+    4元電流密度$j^\mu=[\rho,\frac{\bm{J}}{c}]$を定義すると先ほどの条件は
     \begin{align*}
-        \partial_\mu\partial^\mu A^\nu&=j^\nu\\
+        \partial_\mu\partial^\mu A^\nu&=4\pi j^\nu\\
         \partial_\mu A^\mu&=0
     \end{align*}
     とまとめることができる。
+\end{frame}
+
+\begin{frame}
+    これから先は4元ベクトルポテンシャルが電磁場の正体であるという観点から理論を構成する。\\
+    4元ベクトルポテンシャルを用いると電磁場$\bm{E},\bm{H}$
 \end{frame}
 
 \begin{frame}
