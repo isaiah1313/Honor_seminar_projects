@@ -436,34 +436,35 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
         \begin{align*}
             S=\int L\mathrm{d}t=\iint\mathcal{L}\>\mathrm{d}V\mathrm{d}t=\frac{1}{c}\int \mathcal{L}\>\mathrm{d}^4x
         \end{align*}
-        のように，4次元体積分で作用を表すことができる。
+        のように，ラグラジアン密度の4次元体積分で作用を表すことができる。
     \end{block}
+    作用$S$と4次元体積要素$\mathrm{d}^4x$がローレンツスカラーであることから，ラグランジアン密度もローレンツスカラーであることがわかる。
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
     電磁場の時間発展を決定するのはMaxwell方程式：
     \begin{align*}
-    \nabla \cdot \bm{B} &= 0 \\
-    \nabla \times \bm{E}+\frac{1}{c}\pdiff{\bm{B}}{t} &= 0 \\
+    \nabla \cdot \bm{H} &= 0 \\
+    \nabla \times \bm{E}+\frac{1}{c}\pdiff{\bm{H}}{t} &= 0 \\
     \nabla \cdot \bm{E} &= 4\pi\rho \\
-    \nabla \times \bm{B}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
+    \nabla \times \bm{H}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
     \end{align*}
     である。\\
-    ここから出発して電磁場の作用がどのように書けるのかを考える。
+    ここから出発して電磁場の作用がどのように書けるのかを考察していく。
 \end{frame}
 
 
 
 \begin{frame}{電磁場の時間発展}
-    Maxwell方程式を式変形するとポテンシャル$\phi,\bm{A}$を用いて$\bm{E},\bm{B}$は
+    Maxwell方程式を式変形するとポテンシャル$\phi,\bm{A}$を用いて$\bm{E},\bm{H}$は
     \begin{align*}
         \bm{E}&=-\nabla\phi-\pdiff{\bm{A}}{t}\\
-        \bm{B}&=\nabla\times\bm{A}
+        \bm{H}&=\nabla\times\bm{A}
     \end{align*}
     と書くことができる。このようにするとMaxwell方程式の斉次式：
     \begin{align*}
-        \nabla \cdot \bm{B} &= 0 \\
-        \nabla \times \bm{E}+\frac{1}{c}\pdiff{\bm{B}}{t} &= 0 \\
+        \nabla \cdot \bm{H} &= 0 \\
+        \nabla \times \bm{E}+\frac{1}{c}\pdiff{\bm{H}}{t} &= 0 \\
     \end{align*}
     を自動的に満たすようにできる。
 \end{frame}
@@ -474,14 +475,14 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     ポテンシャル表記をMaxwell方程式の非斉次式：
     \begin{align*}
     \nabla \cdot \bm{E} &= 4\pi\rho \\
-    \nabla \times \bm{B}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
+    \nabla \times \bm{H}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
     \end{align*}
     に代入して式変形するとポテンシャルが満たす条件を得る：
     \begin{align*}
         \left(\frac{1}{c}\pdiff{}{t}-\nabla^2\right)\phi&=4\pi\rho\\
         \left(\frac{1}{c}\pdiff{}{t}-\nabla^2\right)\bm{A}&=4\pi\frac{\bm{J}}{c}\\
         \frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}&=0
-    \end{align*}    
+    \end{align*}    %ここでゲージ固定を課すのはナンセンスな気がするからあとで修正する
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
@@ -497,10 +498,21 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 
 \begin{frame}
     これから先は4元ベクトルポテンシャルが電磁場の正体であるという観点から理論を構成する。\\
-    4元ベクトルポテンシャルを用いると電磁場$\bm{E},\bm{H}$
+    4元ベクトルポテンシャルを用いて電磁場テンソル$F_{\mu\nu}$を定義する：
+    \begin{align*}
+        F_{\mu\nu}&=\partial_\mu A_\nu-\partial_\nu A_\mu
+        =
+        \begin{pmatrix}
+    0 & E_x & E_y & E_z \\
+    -E_x & 0 & -B_z & B_y \\
+    -E_y & B_z & 0 & -B_x \\
+    -E_z & -B_y & B_x & 0
+\end{pmatrix}
+    \end{align*}
+
 \end{frame}
 
-\begin{frame}
+\begin{frame}{電磁場の時間発展}
     複数の点電荷が電磁場と共存している系を考える。
     作用は
     \begin{itemize}
@@ -510,10 +522,33 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     \end{itemize}
     を用いて
     \begin{align*}
-        S_{all}=S_m+S_{mf}+S_f
+        S_{all}
+        &=S_m+S_{mf}+S_f\\
+        &=\frac{1}{c}\int \mathcal{L}_m\>\mathrm{d}^4x+\frac{1}{c}\int \mathcal{L}_{mf}\>\mathrm{d}^4x+\frac{1}{c}\int \mathcal{L}_f\>\mathrm{d}^4x
     \end{align*}
     と書けるだろう。\\
 \end{frame}
 
+\begin{frame}{電磁場の時間発展}
+    はじめに，電磁場単独の作用$S_f$について考察する。\\
+    $S_f$に満たして欲しい条件をまとめると
+    \begin{itemize}
+        \item 場が存在しない時，$S_f=0$である。
+        \item 運動方程式が$A^\mu$の，2階微分方程式になる。\\
+        すなわち，ラグランジアン密度が$A^\mu$の1階微分の2乗の線型結合である。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    以上の考察から，
+    \begin{align*}
+        \mathcal{L}_f\propto\tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}
+    \end{align*}
+    であることがわかる。比例係数は$\mathcal{L}_{mf}$が決まるとMaxwell方程式との比較から決定できる。
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    
+\end{frame}
 
 \end{document}
