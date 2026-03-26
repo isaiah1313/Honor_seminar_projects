@@ -490,6 +490,8 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \begin{frame}
     以上のことから，Maxwell方程式はポテンシャルを用いて
     \begin{align*}
+        \bm{E}&=-\nabla\phi-\frac{1}{c}\pdiff{\bm{A}}{t}\\
+        \bm{H}&=\nabla\times\bm{A}\\
         \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\phi- \frac{1}{c}\pdiff{}{t}\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\rho\\
         \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\bm{A}+ \nabla\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\frac{\bm{J}}{c}
     \end{align*}
@@ -497,29 +499,40 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
-    \begin{block}{ゲージ対称性}
-        ポテンシャル$\bm{A},\phi$に対してスカラー関数$\chi$を用いて以下の変換をする：
+    \begin{block}{ゲージ不変性}
+        ポテンシャル$\bm{A},\phi$に対してスカラー関数$\chi$を用いて以下の変換をしても電磁場$\bm{E},\bm{H}$は変化しない：
         \begin{align*}
             \bm{A}'&=\bm{A}+\nabla\chi\\
-            \phi'&=\phi+\frac{1}{c}\pdiff{\chi}{t}
+            \phi'&=\phi-\frac{1}{c}\pdiff{\chi}{t}\\
+            \bm{E}'&=-\nabla\phi'-\frac{1}{c}\pdiff{\bm{A}'}{t}=\bm{E}\\
+            \bm{H}'&=\nabla\times\bm{A}'=\bm{H}
         \end{align*}
     \end{block}
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
-    $\partial_\mu=\pdiff{}{x^\mu}$,\\
-    4元ベクトルポテンシャル$A^\mu=[\phi,\bm{A}]$,\\
-    4元電流密度$j^\mu=[\rho,\frac{\bm{J}}{c}]$を定義すると先ほどの条件は
+    これまでの話を4元形式に書き換える。以下の記号を準備する：
     \begin{align*}
-        \partial_\mu\partial^\mu A^\nu&=4\pi j^\nu\\
-        \partial_\mu A^\mu&=0
+        \partial_\mu=\pdiff{}{x^\mu},\qquad
+        A^\mu=[\phi,\bm{A}],\qquad
+        j^\mu=[\rho,\frac{\bm{J}}{c}]
     \end{align*}
-    とまとめることができる。
+    \vspace{-0.8cm}
+    \begin{block}{4元形式のMaxwell方程式}
+    Maxwell方程式はポテンシャルを用いて1本の式にまとめられる：
+    \begin{align*}
+        \partial_\mu\partial^\mu A^\nu - \partial^\nu\partial_\mu A^\mu=4\pi j^\nu
+    \end{align*}
+    ゲージ変換は以下のように表される：
+    \begin{align*}
+        A'^\mu=A^\mu-\partial^\mu\chi
+    \end{align*}
+    \end{block}
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
-    これから先は4元ベクトルポテンシャルが電磁場の正体であるという観点から理論を構成する。\\
-    4元ベクトルポテンシャルを用いて電磁場テンソル$F_{\mu\nu}$を定義する：
+    4元ベクトルポテンシャルが定まると電磁場$\bm{E},\bm{H}$も一意に定まる。\\
+    4元ベクトルポテンシャルは次の電磁場テンソルを用いると電磁場との関係が見やすくなる：
     \begin{align*}
         F_{\mu\nu}&=\partial_\mu A_\nu-\partial_\nu A_\mu
         =
@@ -528,9 +541,9 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     -E_x & 0 & -H_z & H_y \\
     -E_y & H_z & 0 & -H_x \\
     -E_z & -H_y & H_x & 0
-\end{pmatrix}
+        \end{pmatrix}
     \end{align*}
-
+    これからは電磁場ポテンシャルが電磁場の本質であるという立場から電磁場の作用やラグランジアン密度がどのように表されるのかを考察していく。
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
