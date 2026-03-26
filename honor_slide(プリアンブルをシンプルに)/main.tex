@@ -450,7 +450,7 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     \nabla \times \bm{H}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
     \end{align*}
     である。\\
-    ここから出発して電磁場の作用がどのように書けるのかを考察していく。
+    電磁場の作用を考える準備としてMaxwell方程式について考察する。
 \end{frame}
 
 
@@ -458,7 +458,7 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \begin{frame}{電磁場の時間発展}
     Maxwell方程式を式変形するとポテンシャル$\phi,\bm{A}$を用いて$\bm{E},\bm{H}$は
     \begin{align*}
-        \bm{E}&=-\nabla\phi-\pdiff{\bm{A}}{t}\\
+        \bm{E}&=-\nabla\phi-\frac{1}{c}\pdiff{\bm{A}}{t}\\
         \bm{H}&=\nabla\times\bm{A}
     \end{align*}
     と書くことができる。このようにするとMaxwell方程式の斉次式：
@@ -471,6 +471,7 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 
 
 
+
 \begin{frame}{電磁場の時間発展}
     ポテンシャル表記をMaxwell方程式の非斉次式：
     \begin{align*}
@@ -479,10 +480,30 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     \end{align*}
     に代入して式変形するとポテンシャルが満たす条件を得る：
     \begin{align*}
-        \left(\frac{1}{c}\pdiff{}{t}-\nabla^2\right)\phi&=4\pi\rho\\
-        \left(\frac{1}{c}\pdiff{}{t}-\nabla^2\right)\bm{A}&=4\pi\frac{\bm{J}}{c}\\
-        \frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}&=0
+        \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\phi- \frac{1}{c}\pdiff{}{t}\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\rho\\
+        \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\bm{A}+ \nabla\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\frac{\bm{J}}{c}
+        %\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}&=0
     \end{align*}    %ここでゲージ固定を課すのはナンセンスな気がするからあとで修正する
+\end{frame}
+
+
+\begin{frame}
+    以上のことから，Maxwell方程式はポテンシャルを用いて
+    \begin{align*}
+        \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\phi- \frac{1}{c}\pdiff{}{t}\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\rho\\
+        \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\bm{A}+ \nabla\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\frac{\bm{J}}{c}
+    \end{align*}
+    に書き換えることができる。
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    \begin{block}{ゲージ対称性}
+        ポテンシャル$\bm{A},\phi$に対してスカラー関数$\chi$を用いて以下の変換をする：
+        \begin{align*}
+            \bm{A}'&=\bm{A}+\nabla\chi\\
+            \phi'&=\phi+\frac{1}{c}\pdiff{\chi}{t}
+        \end{align*}
+    \end{block}
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
@@ -496,7 +517,7 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     とまとめることができる。
 \end{frame}
 
-\begin{frame}
+\begin{frame}{電磁場の時間発展}
     これから先は4元ベクトルポテンシャルが電磁場の正体であるという観点から理論を構成する。\\
     4元ベクトルポテンシャルを用いて電磁場テンソル$F_{\mu\nu}$を定義する：
     \begin{align*}
@@ -504,9 +525,9 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
         =
         \begin{pmatrix}
     0 & E_x & E_y & E_z \\
-    -E_x & 0 & -B_z & B_y \\
-    -E_y & B_z & 0 & -B_x \\
-    -E_z & -B_y & B_x & 0
+    -E_x & 0 & -H_z & H_y \\
+    -E_y & H_z & 0 & -H_x \\
+    -E_z & -H_y & H_x & 0
 \end{pmatrix}
     \end{align*}
 
@@ -535,7 +556,7 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     \begin{itemize}
         \item 場が存在しない時，$S_f=0$である。
         \item 運動方程式が$A^\mu$の，2階微分方程式になる。\\
-        すなわち，ラグランジアン密度が$A^\mu$の1階微分の2乗の線型結合である。
+        すなわち，ラグランジアン密度が$A^\mu$の1階微分の2乗である。
     \end{itemize}
 \end{frame}
 
@@ -544,11 +565,17 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     \begin{align*}
         \mathcal{L}_f\propto\tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}
     \end{align*}
-    であることがわかる。比例係数は$\mathcal{L}_{mf}$が決まるとMaxwell方程式との比較から決定できる。
+    であることがわかる。比例係数は$\mathcal{L}_{mf}$が決まるとMaxwell方程式との比較から決定できる。\\
+    $\tensor{F}{^\mu^\nu}$の成分を代入すると,
+    \begin{align*}
+        \tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}=\bm{H}^2-\bm{E}^2
+    \end{align*}
+    である。
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
-    
+    次に，粒子と電磁場の相互作用の作用$S_{mf}$について考察する。\\
+    a
 \end{frame}
 
 \end{document}
