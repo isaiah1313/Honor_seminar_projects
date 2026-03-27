@@ -386,8 +386,8 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 \end{frame}
 
 \begin{frame}{質点の時間発展}
-    作用として経路長$\int \mathrm{d}s$に比例する量を選べば，作用の停留条件は等速直線運動になると考えられる。\\
-    次元調整と後のニュートン力学との整合性のために$-mc$をかけて，
+    計量$g_{\mu\mu}$を用いると直線の経路長が最大になる。そのため，作用として経路長の負$-\int \mathrm{d}s$に比例する量を選べば，作用の停留条件は等速直線運動になると考えられる。\\
+    次元調整とニュートン力学との整合性のために$mc$をかけて，
 \begin{columns}[T]
     \column{0.5\textwidth}
     \begin{align*}
@@ -418,28 +418,6 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 
 %===============================================================
 \section{電磁場の時間発展}
-
-\begin{frame}{電磁場の時間発展}
-    質点の作用は系の状態$\bm{r},\bm{v}$の関数であるラグランジアン$L(\bm{r},\bm{v})$を時間積分した量であった。
-    \begin{block}{場の作用の考え方}
-        場を含む系では系が持つ自由度は，空間に分布する関数であり連続無限である。\\
-        そのため場のラグランジアン$L$は，空間の各点の場の状態で定まる量であるラグランジアン密度$\mathcal{L}$の体積分で定義される。\\
-        \begin{align*}
-            L=\int \mathcal{L}\mathrm{d}V
-        \end{align*}
-    \end{block}
-\end{frame}
-
-\begin{frame}{電磁場の時間発展}
-    \begin{block}{場の作用の考え方}
-        そして，作用$S$はラグランジアンの時間積分なので
-        \begin{align*}
-            S=\int L\mathrm{d}t=\iint\mathcal{L}\>\mathrm{d}V\mathrm{d}t=\frac{1}{c}\int \mathcal{L}\>\mathrm{d}^4x
-        \end{align*}
-        のように，ラグラジアン密度の4次元体積分で作用を表すことができる。
-    \end{block}
-    作用$S$と4次元体積要素$\mathrm{d}^4x$がローレンツスカラーであることから，ラグランジアン密度もローレンツスカラーであることがわかる。
-\end{frame}
 
 \begin{frame}{電磁場の時間発展}
     電磁場の時間発展を決定するのはMaxwell方程式：
@@ -543,8 +521,35 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
     -E_z & -H_y & H_x & 0
         \end{pmatrix}
     \end{align*}
-    これからは電磁場ポテンシャルが電磁場の本質であるという立場から電磁場の作用やラグランジアン密度がどのように表されるのかを考察していく。
+    電磁場テンソルを用いるとMaxwell方程式は
+    \begin{align*}
+        \partial_\mu \tensor{F}{^\mu^\nu}=4\pi j^\nu
+    \end{align*}
+    とかける。
 \end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    質点の作用は系の状態$\bm{r},\bm{v}$の関数であるラグランジアン$L(\bm{r},\bm{v})$を時間積分した量であった。
+    \begin{block}{場の作用の考え方}
+        場を含む系では系が持つ自由度は，空間に分布する関数であり連続無限である。\\
+        そのため場のラグランジアン$L$は，空間の各点の場の状態で定まる量であるラグランジアン密度$\mathcal{L}$の体積分で定義される。\\
+        \begin{align*}
+            L=\int \mathcal{L}\mathrm{d}V
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    \begin{block}{場の作用の考え方}
+        そして，作用$S$はラグランジアンの時間積分なので
+        \begin{align*}
+            S=\int L\mathrm{d}t=\iint\mathcal{L}\>\mathrm{d}V\mathrm{d}t=\frac{1}{c}\int \mathcal{L}\>\mathrm{d}^4x
+        \end{align*}
+        のように，ラグラジアン密度の4次元体積分で作用を表すことができる。
+    \end{block}
+    作用$S$と4次元体積要素$\mathrm{d}^4x$がローレンツスカラーであることから，ラグランジアン密度もローレンツスカラーであることがわかる。
+\end{frame}
+
 
 \begin{frame}{電磁場の時間発展}
     複数の点電荷が電磁場と共存している系を考える。
@@ -565,30 +570,127 @@ $a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
 
 \begin{frame}{電磁場の時間発展}
     はじめに，電磁場単独の作用$S_f$について考察する。\\
-    $S_f$に満たして欲しい条件をまとめると
-    \begin{itemize}
-        \item 場が存在しない時，$S_f=0$である。
-        \item 運動方程式が$A^\mu$の，2階微分方程式になる。\\
-        すなわち，ラグランジアン密度が$A^\mu$の1階微分の2乗である。
-    \end{itemize}
+    $S_f$と$\mathcal{L}_f$に満たして欲しい条件は以下である。
+    \begin{block}{$S_f$と$\mathcal{L}_f$の要請}
+        \begin{itemize}
+            \item ローレンツ不変性：$\mathcal{L}_f$がローレンツスカラーである
+            \item ゲージ不変性：ゲージ変換で$S_f$が変化しない(物理法則が変化しない)
+            \item 運動方程式の線形性：運動方程式が$A^\mu$の2階線形微分方程式になる。\\(すなわち，$\mathcal{L}_f$が$A^\mu$の1階微分の2乗で書ける)
+            \item 電磁場の情報のみで書ける。\\($j^\mu$を含まない)
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}{電磁場の時間発展}
+    \begin{block}{$\mathcal{L}_f$ の決定}
+        電磁場テンソル $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ はゲージ不変性を満たす$A^\mu$の1階微分量である。\\
+        これをローレンツスカラーかつ2乗の形にする最も単純な方法は、自身との内積をとることである。
+    \end{block}
+    
+    以上の要請から、$\mathcal{L}_f$ の形は次のように絞られる。
+    \begin{align*}
+        \mathcal{L}_f \propto \tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}=2(\bm{H}^2-\bm{E}^2)
+    \end{align*}
+    となる。（比例係数は、相互作用項$S_{mf}$を決定した後にMaxwell方程式と比較することで求められる）
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
-    以上の考察から，
+    このようにして電磁場単独の作用は
     \begin{align*}
-        \mathcal{L}_f\propto\tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}
+        S_f=\frac{\alpha}{c}\int \tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}\>\mathrm{d}^4x
     \end{align*}
-    であることがわかる。比例係数は$\mathcal{L}_{mf}$が決まるとMaxwell方程式との比較から決定できる。\\
-    $\tensor{F}{^\mu^\nu}$の成分を代入すると,
+    とわかった。\\
+    電磁場について変分$A^\mu+\delta A^\mu$をとり，停留条件を求めると4元形式のMaxwell方程式で4元電荷密度$j^\mu=0$とした式：
     \begin{align*}
-        \tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}=\bm{H}^2-\bm{E}^2
+        \partial^\mu\partial_\mu A^\nu-\partial^\nu\partial_\mu A^\mu=0
     \end{align*}
-    である。
+    を運動方程式として求めることができ，電荷との相互作用がない電磁場を説明する作用であることが確かめられる。
 \end{frame}
 
 \begin{frame}{電磁場の時間発展}
-    次に，粒子と電磁場の相互作用の作用$S_{mf}$について考察する。\\
-    a
+    $S_{mf}$を作る準備として，粒子と電磁場の相互作用であるローレンツ力について考察する。
+    \begin{block}{ローレンツ力を受ける質点の作用}
+        ニュートン力学ではローレンツ力を受ける粒子系$\{\bm{r}_a,e_a\}$の運動方程式は
+        \begin{align*}
+            m\diff{^2\bm{r}_a}{t^2}= e_a(\bm{E}+\frac{\bm{v}_a}{c}\times\bm{B})
+        \end{align*}
+        と表された。この運動方程式は以下の作用の停留条件から導ける：
+        \begin{align*}
+            S=\int_{t_0}^{t_1} \left[\frac{1}{2}m\bm{v}^2-\sum_a\left(e_a\phi(\bm{r}_a)-e_a\frac{\bm{v}_a}{c}\cdot\bm{A}(\bm{r}_a)\right)\right]\>\mathrm{d}t
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    ニュートン力学での作用から相互作用項を4元形式で表して相互作用のラグランジアン密度を得ることができる。
+    \begin{align*}
+        j^\mu=[\rho,\frac{\bm{J}}{c}]=\left[\sum_a e_a\delta(\bm{r}_a-\bm{r}), \sum_a e_a \frac{\bm{v}_a}{c}\delta(\bm{r}_a-\bm{r})\right]
+    \end{align*}
+    であるので，
+    \begin{align*}
+        S_{mf}
+        &=-\int \left( \phi\rho-\frac{1}{c}\bm{A}\cdot\bm{J} \right)\>\mathrm{d}t\\
+        &=-\frac{1}{c}\int A^\mu j_\mu\>\mathrm{d}^4 x
+    \end{align*}
+    となると考えられる。
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    $S_{mf}$に満たして欲しい条件は以下である。
+    \begin{block}{$S_{mf}と\mathcal{L}_f$の要請}
+        \begin{itemize}
+            \item ローレンツ不変性：$\mathcal{L}_{mf}$がローレンツスカラーである。
+            \item 運動方程式の再現①：$S_m+S_{mf}$の停留条件から電磁場中の点電荷の運動方程式が得られる。
+            \item 運動方程式の再現②：$S_{mf}+S_f$の停留条件から電荷が存在する時のMaxwell方程式になる。
+            \item ゲージ不変性：ゲージ変換で$S_{mf}$が変化しない。
+        \end{itemize}
+    これらの要請を満たしているのかを確認する。
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    ローレンツ不変性と運動方程式の再現①を満たしていることは明らかである。
+    \begin{block}{運動方程式の再現②の確認}
+        \begin{align*}
+            S_{mf}+S_f=\frac{1}{c}\int \alpha\tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu} - A^\mu j_\mu \>\mathrm{d}^4 x
+        \end{align*}
+        に対して変分$A^\mu+\delta A^\mu$をとり，停留条件を求めると以下の式：
+        \begin{align*}
+            -4\alpha \partial_\mu\tensor{F}{^\mu^\nu} - j^\nu=0
+        \end{align*}
+        を得る。よって，$\alpha=-\frac{1}{16\pi}$とすると電荷が存在する場合のMaxwell方程式と一致することがわかる。
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    \begin{block}{ゲージ不変性の確認}
+        ゲージ変換$A'^\mu=A^\mu-\partial^\mu \chi$の前後で作用が不変であることを確かめる。
+        \begin{align*}
+            S'_ {mf}-S_{mf}
+            &=-\frac{1}{c}\int j_\mu\partial^\mu \chi\>\mathrm{d}^4 x\\
+            &=-\frac{1}{c}\int \left[-\partial^\mu(j_\mu \chi)+\chi\partial_\mu j^\mu\right]\>\mathrm{d}^4 x
+        \end{align*}
+        第1項は表面項なので0である。\\
+        第2項は電荷保存則$\partial_\mu j^\mu = \frac{1}{c}\left(\pdiff{\rho}{t}+\nabla\cdot\bm{J}\right)=0$より0である。\\
+        よって作用はゲージ変換の前後で不変であり，要請を満たす。
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{まとめ}
+    \begin{block}{電磁場と粒子の作用}
+        \begin{align*}
+        S_m&=-mc\sum_a \int \>\mathrm{d}s_a \\
+        S_{mf}&=\int -\frac{1}{16\pi c} \tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}\>\mathrm{d}^4 x\\
+        S_{f}&=-\int \frac{1}{c} A^\mu j_\mu\>\mathrm{d}^4 x
+        \end{align*}
+        であり，作用
+        $S_{all}=S_m+S_{mf}+S_f$
+        が最小になる運動が実現する。\\
+        この作用が持つ対称性から，エネルギーや運動量などの保存量を得ることができる。
+    \end{block}
 \end{frame}
 
 \end{document}
