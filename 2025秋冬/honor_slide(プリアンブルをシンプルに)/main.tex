@@ -1,0 +1,696 @@
+%1. 基本設定
+\documentclass[unicode, aspectratio=169, 12pt]{beamer}
+%\usecolortheme[RGB={0, 139, 0}]{structure} %多分RGBで色を変えられる
+
+
+
+% 2. 日本語設定（元々はこれだった，明朝体）
+% fontspecは指定せず、標準の原ノ味フォント（TeX Live標準）に任せるのが最も安全です
+%\usepackage{luatexja} 
+
+% 2. 日本語設定（ゴシック体にフォント変更してみた）
+% haranoajiを指定し、スライド全体の日本語デフォルトをゴシック体に変更する
+\usepackage[haranoaji]{luatexja-preset}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+
+
+% 3. 数式・物理系のパッケージ
+\usepackage{amsmath, amssymb, mathtools, bm}
+\usepackage{physics} 
+% physicsとの競合（\qty）を避ける設定で読み込みます
+\usepackage[overwrite-functions=false]{siunitx} 
+\usepackage{tensor} % テンソルをいい感じに描くためのパッケージ，それぞれのpcで使えるか要確認！！！！！！！！
+
+
+
+% 4. 図・グラフ・枠組み（TikZ & tcolorbox）
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{math, arrows.meta, angles, quotes, decorations.markings}
+\usepackage[most]{tcolorbox} % 枠付きボックス（ascmacの代わりになります）
+
+
+
+% 5. レイアウト設定
+\renewcommand{\baselinestretch}{1.2} % スライドでは1.5は広すぎるため1.2程度が一般的です
+\usepackage{url}
+
+\newcommand{\diff}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}} %常微分を書くパッケージ
+\newcommand{\pdiff}[2]{\frac{\mathrm{\partial} #1}{\mathrm{\partial} #2}} %常微分を書くパッケージ
+
+% 6. Beamerのデザインテーマ（Boadillaベース）
+\usetheme{Boadilla}
+\usecolortheme{whale}
+\usefonttheme{professionalfonts}
+\setbeamertemplate{navigation symbols}{} % 右下のアイコンを消す
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+\setbeamersize{text margin left=1cm, text margin right=1cm} %スライドの両端1cmを白紙にして寄りすぎないようにする
+\setbeamertemplate{blocks}[rounded][shadow=false] %blockの下側の影を消す
+\setbeamertemplate{items}[square] %箇条書きのスタイルを指定
+\setbeamertemplate{section in toc}[square] %目次の箇条書きのスタイルを指定
+\setbeamertemplate{subsection in toc}[square]
+
+% 7. タイトル情報
+\title{オナーセミナー最終報告}
+\author{笹伶夷\and 下橋以紗也\and 田處裕哉}
+\institute{大阪大学 理学部 物理学科}
+\date{\today}
+
+
+%===============================================================
+% 表記のルールの例
+% ベクトル空間は $\bm{V}$
+% ベクトルは太字にせずにそのまま x \in \bm{V} のように描く
+% テンソルはtensorパッケージを使って  \tensor{t}{^\mu_nu}のように書く (このパッケージじゃないと添字の位置がうまく表示されない)
+% 常微分は \diff{f}{t}のように書く, n階微分は \diff{^n f}{t^n}のように書く
+% 偏微分は \pdiff{f}{t}のように書く, n階微分は \pdiff{^n f}{t^n}のように書く
+
+
+%===============================================================
+\begin{document}
+
+%タイトルスライド
+\begin{frame}
+    \titlepage
+\end{frame}
+
+
+%目次スライド
+\begin{frame}{目次}
+    \tableofcontents
+\end{frame}
+
+
+
+%===============================================================
+\section{場の古典論とは}
+
+
+\begin{frame}{学部で習う物理の分野} %ここは突っ込まれそうなので直したい
+    \begin{itemize}
+        \item 力学 : 物体の運動を扱う
+        \item 電磁気学 : 電磁場を扱う
+        \item 特殊相対性理論 : 平坦な時空の物理を扱う
+        \item 一般相対性理論 : 重力で歪んだ時空の物理を扱う
+        \item \dots
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{場の古典論とは}
+
+    \begin{block}{}
+        場 : 空間に分布している物理量のこと\\
+        古典論 : 量子力学的ではないという意味
+    \end{block}
+
+    \begin{center}
+        {\Large $\Downarrow$}
+    \end{center}
+
+    \begin{alertblock}{場の古典論}
+        量子力学的ではない，\\
+        空間に分布する物理量(質点や電磁場，重力)を統一的に扱う分野
+    \end{alertblock}
+
+    本発表では質点と電磁場の理論について紹介する
+
+\end{frame}
+
+
+
+%===============================================================
+\section{特殊相対性理論の舞台}
+
+%\begin{frame}{特殊相対性理論の舞台}
+%    \begin{block}{ニュートン力学の舞台}
+%        空間3次元の実ベクトル空間$\bm{V}$を考える
+%        \begin{itemize}
+%            \item  空間上の位置を位置ベクトル$x\in\bm{V}$で表す：
+%            \begin{align*}
+%                x = [x^i] = [x,y,z]^T\quad(i=1,2,3)
+%            \end{align*}
+%            \item 時刻$t$は単なる実数パラメータで質点の運動は$\bm{r}(t)\in\bm{V}$と表す。
+%            \item ベクトル$a\in\bm{V}$の"大きさ"を計量$I=\mathrm{diag}(1,1,1)$を用いて定義する：
+%            \begin{align*}
+%                \norm{a}^2 = \tensor{I}{_i_j} a^i a^j  = (a_1)^2+(a_2)^2+(a_3)^2
+%            \end{align*}
+%        \end{itemize}        
+%    \end{block}
+%\end{frame}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{特殊相対性理論の出発点}
+        \begin{itemize}
+            \item 全ての慣性系\footnote{力が加わらない物体が静止あるいは等速直線運動をするように見える系のこと}で物理法則は同じ形をしている
+            \item 相互作用の伝達速度には上限が存在する%光の速度が不変で、それは...にした方が親切かも
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{ミンコフスキー空間 $\bm{M}$}
+        時間1次元と空間3次元を統合した4次元実ベクトル空間 $\bm{M}$ を考える。
+        \begin{itemize}
+            \item 位置と時間をまとめて \textbf{4元位置ベクトル} $x \in \bm{M}$ で表す：
+            \begin{equation*}
+                x = [x^\mu] = [ct, x, y, z]^T=[ct,\bm{r}] \quad (\mu = 0, 1, 2, 3)
+            \end{equation*}
+            \item 質点の運動はミンコフスキー空間上では曲線として表される。
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{特殊相対性理論の舞台}
+    特殊相対性理論で考える座標変換は
+    \begin{itemize}
+        \item 同じ慣性系での3次元の回転変換
+        \item 異なる速度で動く慣性系との座標変換
+    \end{itemize}
+    の2種類である。これらの座標変換をまとめてローレンツ変換と呼ぶ。\\
+    この座標変換は線形であり，2階テンソルを用いて表現することができる。
+\end{frame}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{計量$g$}
+        \begin{itemize}
+            \item 4元ベクトル $a \in \bm{M}$ の"大きさ"を計量 $g = \mathrm{diag}(1, -1, -1, -1)$ を用いて定義する：
+            \begin{equation*}
+                \norm{a}^2 =  \tensor{g}{_\mu_\nu} a^\mu a^\nu  = (a_0)^2-(a_1)^2-(a_2)^2-(a_3)^2
+            \end{equation*}
+            \item ローレンツ変換の前後で4元ベクトルの"大きさ"は変化しない:
+            \begin{align*}
+                \norm{a}^2=\tensor{g}{_\mu_\nu} a^\mu a^\nu&=\tensor{g}{_\mu_\nu} a'^\mu a'^\nu=\norm{a'}^2\\
+                \iff
+                \tensor{g}{_\mu_\nu}&=\tensor{g}{_\rho_\sigma} \tensor{\Lambda}{^\rho_\mu}\tensor{\Lambda}{^\sigma_\nu}
+            \end{align*}
+            
+        \end{itemize}        
+    \end{block}
+\end{frame}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{ローレンツ変換}
+        \begin{itemize}
+            \item 元位置ベクトル$x^\mu$を異なる慣性系から見た時の4元位置ベクトル$x'^\mu$はローレンツ変換テンソル$\Lambda=\tensor{\Lambda}{_\mu_\nu}$を用いて
+            \begin{align*}
+                x'^\mu = x^\nu \tensor{\Lambda}{^\mu_\nu}
+            \end{align*}
+        と求められる。\\
+        \item ローレンツ変換の前後で$g=\mathrm{diag}(+1,-1,-1,-1)$が変化しない:
+            \begin{align*}
+                \tensor{g}{_\mu_\nu}&=\tensor{g}{_\rho_\sigma}\tensor{\Lambda}{^\rho_\mu}\tensor{\Lambda}{^\sigma_\nu}\\
+            \end{align*}
+        \end{itemize}
+    \end{block}    
+\end{frame}
+
+            %\item $g$ により、$\bm{M}$の元である反変ベクトルとその双対空間 $\bm{M}^*$ の元である共変ベクトルに1対1の対応関係を作ることができる：
+            %\begin{align*}
+            %      a_\mu &= g_{\mu\nu} a^\nu = [a_0, a_1, a_2, a_3]\\
+            %      a^\mu &= g^{\mu\nu} a_\nu = [a_0, a_1, a_2, a_3]
+            %\end{align*}
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{双対空間$\bm{M}^*$}
+        \begin{itemize}
+        \item $a^\mu\in\bm{M}$を計量$g$を用いて添字を下げる:
+            \begin{align*}
+                a_\nu=\tensor{g}{_\mu_\nu} a^\mu
+            \end{align*}
+            下付き添字のベクトルの集合を$M$の双対空間と呼び$\bm{M}^*$と書く。
+        \item $\tensor{g}{_\mu_\nu}$の逆写像として上付きの計量$\tensor{g}{^\mu^\nu}$を定義する。:
+        \begin{align*}
+            a^\mu=\tensor{g}{^\mu^\nu}a_\nu
+        \end{align*}
+        \end{itemize}
+    \end{block}
+これによって$\bm{M}$と$\bm{M}^*$に1対1の対応関係を作ることができた。\\
+$a^\mu$を反変ベクトル，$a_\mu$を共変ベクトルと呼ぶ
+\end{frame}
+
+
+\begin{frame}{特殊相対性理論の舞台}
+    \begin{block}{相対論的な物理の記述}
+        ミンコフスキー空間$M$とその双対空間$M^*$を用いて物理を記述していく\\
+        物理では基底を明記せずに係数だけを書くことが多い
+        \begin{itemize}
+            \item スカラー $s$
+            \item 反変ベクトル$a^\mu\in\bm{M}$と共変ベクトル$a_\mu\in\bm{M}$
+            \item 2階テンソル$\tensor{T}{^\mu^\nu}\in\bm{M}\otimes\bm{M}$,\quad$\tensor{T}{_\mu_\nu}\in\bm{M}^*\otimes\bm{M}^*$,\quad\dots
+            \item n階テンソル$\tensor{T}{^{\mu_1}^{\mu_2}^{ \dots}^{\mu_n}}\in \bm{M}\otimes\bm{M}\dots \otimes\bm{M}$,\quad\dots
+        \end{itemize}
+    に物理量を対応させる
+    \end{block}
+\end{frame}
+
+%===============================================================
+\section{最小作用の原理とは}
+\begin{frame}{最小作用の原理とは}
+    \begin{block}{ラグランジアン$L$}
+        系の状態によって定まるエネルギーの次元を持つ量である\\
+    \end{block}
+ニュートン力学では$L(x,v)=\frac{1}{2}m v^2 -U(x)$と書けることが多い。
+    \begin{block}{作用$S$}
+        系の各瞬間のラグランジアンの値を時間積分した値：
+        \begin{align*}
+            S = \int_{t_0}^{t_1} L \>\mathrm{d}t
+        \end{align*}
+        系の時間発展が定まると作用$S$の値も一意に定まる
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{最小作用の原理とは}
+    \begin{block}{最小作用の原理}
+        系が時間発展するとき，実現する時間発展の作用の変分
+        \footnote{作用の変分:系のある時間発展と，少しだけ変化させた系の時間発展での作用の差のこと}
+        は$\delta S=0$となる。
+    \end{block}
+ニュートン力学の場合は最小作用の原理から運動方程式(オイラーラグランジュ方程式)を導出できる。
+\begin{align*}
+    0 = \delta S
+    &= \int_{t_0}^{t_1}L(x+\delta x, v + \delta v)\>\mathrm{d}t - \int_{t_0}^{t_1} L(x,v) \>\mathrm{d}t \\
+    &= \int_{t_0}^{t_1} \delta x \left[\pdiff{L}{x}-\diff{}{t}\pdiff{L}{v}\right]\>\mathrm{d}t
+\end{align*}
+\end{frame}
+
+\begin{frame}{最小作用の原理とは}
+    \begin{block}{作用，ラグランジアンの選び方}
+        最小作用の原理の結果，現実世界を再現できるようなものであるなら作用はどのようなものを選んでも良い。\\
+        一般な系決める方法は存在しないが，
+        \begin{itemize}
+            \item 系の対称性
+            \item 作用の次元が$\mathrm{ML^2T^{-1}}$になる
+            \item 作用がローレンツスカラーである\footnote{相対性原理から作用がローレンツスカラーであることが導ける}
+        \end{itemize}
+        などの要求からある程度の任意性を除いてラグランジアンや作用を定めることができる。 %ここは怪しい
+    \end{block}
+\end{frame}
+
+
+
+%===============================================================
+\section{質点の時間発展}
+
+\begin{frame}{質点の時間発展}
+    \begin{columns}[T]
+        \column{0.55\textwidth}
+        \begin{block}{質点の運動の表現方法}
+            質点の運動は時空図の曲線（世界線）\\
+            として表示される。弧長パラメータ：
+            \begin{align*}
+                \mathrm{d}s = \sqrt{\tensor{g}{_\mu_\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu}=\sqrt{\mathrm{d}x^\mu\mathrm{d}x_\mu}
+            \end{align*}
+            を用いて$x^\mu(s)$ と媒介変数表示
+        \end{block}
+        
+        \column{0.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale = 0.3]
+                %x軸
+                \draw[->,>=stealth,thick](-8,0)--(7.5,0) node[right, font=\small]{$x^i=[x,y,z]$};
+                \draw[->,>=stealth,thick](0,-8)--(0,8) node[above, font=\small]{$x^0=ct$};
+                \draw(0,0) node[above left]{O};
+
+                %粒子
+                \draw[thick, red, line width=1.2pt](-6,-8) to[out=85,in=270-45] (0,0) to[out=90-45,in=-90](4,8); 
+
+                \fill(3.9,6.5) circle(10pt);%粒子の点
+                \draw[thick](3.9,6.5)--(7,9)node[fill=white,right]{$x^\mu(s)$};
+
+                \draw[thick,dashed](0,0) to[out=10,in=270+15](3.9,6.5);%長さを表す破線
+                \draw(6,2)node[fill=white]{経路長$s$};
+                
+            \end{tikzpicture}
+        \end{center}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{質点の時間発展}
+    \begin{block}{質点の運動の表現方法}
+        質点の時間発展は$x^\mu(s)$と表すことができた。\\
+        この時，$u^\mu(s)=\diff{x^\mu}{s}$はミンコフスキー空間での"速度"を表す曲線の接ベクトルになっている。$u^\mu(s)$のノルムは
+        \begin{align*}
+            \norm{u}^2=\tensor{g}{_\mu_\nu}u^\mu u^\nu=\tensor{g}{_\mu_\nu}\diff{x^\mu}{s}\diff{x^\nu}{s}=\frac{\tensor{g}{_\mu_\nu}\mathrm{d}x^\mu \mathrm{d}x^\nu}{\mathrm{d}s^2}=\frac{\mathrm{d}s^2}{\mathrm{d}s^2}=1
+        \end{align*}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{質点の時間発展}
+    %\vspace{-3cm}
+    自由粒子の時間発展を表す作用がどのようになるのかを考える。\\
+    \begin{itemize}
+        \item 時空間の並進対称性，回転対称性を持つ
+        \item 等速直線運動が再現される
+        \item ローレンツスカラーである
+    \end{itemize}
+    といった条件が科される。
+\end{frame}
+
+%\begin{frame}{質点の時間発展}
+%    \begin{block}{時空間の並進対称性}
+%        時空間の系の並進の表現方法を考える。\\
+%        世界線$x^\mu(s)$を定ベクトル$a^\mu$だけ並進させると：
+%        \begin{align*}
+%            x'^\mu=x^\mu+a^\mu
+%        \end{align*}
+%        この変換によって座標は変化するが4元速度は変化しない：
+%        \begin{align*}
+%            u'^\mu=\diff{(x^\mu+a^\mu)}{s}=u^\mu
+%        \end{align*}
+%        よって時空間の並進対称性から\\
+%        作用は座標$x^\mu$が陽に現れず，4元速度$u^\mu$に依存すると考えられる。
+%    \end{block}
+%\end{frame}
+
+\begin{frame}{質点の時間発展}
+    \begin{block}{時空間の回転対称性}
+        時空間の回転対称の表現方法を考える。\\
+        世界線$x^\mu(s)$をローレンツ変換テンソル$\tensor{\Lambda}{^\mu_\nu}$で変換させる：
+        \begin{align*}
+            x'^\mu=\tensor{\Lambda}{^\mu_\nu}x^\nu
+        \end{align*}
+        この変換によって全ての4元ベクトルは変換されるがノルムは変化しない：
+        \begin{align*}
+            \norm{x}=\norm{x'}
+        \end{align*}
+        よって時空間の回転対称性から\\
+        作用は4元ベクトル自体は現れず，そのノルムのみに依存するとわかる。
+    \end{block}
+\end{frame}
+
+\begin{frame}{質点の時間発展}
+    計量$g_{\mu\mu}$を用いると直線の経路長が最大になる。そのため，作用として経路長の負$-\int \mathrm{d}s$に比例する量を選べば，作用の停留条件は等速直線運動になると考えられる。\\
+    次元調整とニュートン力学との整合性のために$mc$をかけて，
+\begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{align*}
+        S
+        &=-mc\int_{A}^{B}\>\mathrm{d}s\\
+        %&=-mc\int_{A}^{B} \sqrt{c^2\mathrm{d}t^2-\mathrm{d}\bm{r}^2}\\
+        %&=-mc^2\int_{t_A}^{t_B}\sqrt{1-\left(\frac{\bm{v}}{c}\right)^2}\>\mathrm{d}t
+    \end{align*}
+    と書かれることがわかる。
+    \column{0.5\textwidth}
+        \begin{tikzpicture}[scale = 0.25]
+            %x軸
+            \draw[->,>=stealth,thick](-3,0)--(10,0) node[right, font=\small]{$x^i=[x,y,z]$};
+            \draw[->,>=stealth,thick](0,-4)--(0,10) node[above, font=\small]{$x^0=ct$};
+            \draw(0,0) node[above left]{O};
+            
+            %世界線
+            \fill(8,8) [red]circle(10pt)node[black,above right]{B};
+            \fill(2,-2) [red]circle(10pt)node[black,below]{A};
+            \draw[thick,red,line width=1.2pt](2,-2)--(8,8); %実現する経路
+            \draw[thick,blue,dotted,line width=1.2pt](2,-2)to[out=30,in=-90](8,8); %変分した経路
+            \draw[thick,blue,dotted,line width=1.2pt](2,-2)to[out=90,in=-90](8,8);
+            \draw[thick](6,4.5)--(3,4)node[left,fill=white]{実際の経路};
+            \draw[thick](3.8,-1)--(6,-3)node[right]{変分した経路};
+        \end{tikzpicture}
+\end{columns}
+\end{frame}
+
+%===============================================================
+\section{電磁場の時間発展}
+
+\begin{frame}{電磁場の時間発展}
+    電磁場の時間発展を決定するのはMaxwell方程式：
+    \begin{align*}
+    \nabla \cdot \bm{H} &= 0 \\
+    \nabla \times \bm{E}+\frac{1}{c}\pdiff{\bm{H}}{t} &= 0 \\
+    \nabla \cdot \bm{E} &= 4\pi\rho \\
+    \nabla \times \bm{H}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
+    \end{align*}
+    である。\\
+    電磁場の作用を考える準備としてMaxwell方程式について考察する。
+\end{frame}
+
+
+
+\begin{frame}{電磁場の時間発展}
+    Maxwell方程式を式変形するとポテンシャル$\phi,\bm{A}$を用いて$\bm{E},\bm{H}$は
+    \begin{align*}
+        \bm{E}&=-\nabla\phi-\frac{1}{c}\pdiff{\bm{A}}{t}\\
+        \bm{H}&=\nabla\times\bm{A}
+    \end{align*}
+    と書くことができる。このようにするとMaxwell方程式の斉次式：
+    \begin{align*}
+        \nabla \cdot \bm{H} &= 0 \\
+        \nabla \times \bm{E}+\frac{1}{c}\pdiff{\bm{H}}{t} &= 0 \\
+    \end{align*}
+    を自動的に満たすようにできる。
+\end{frame}
+
+
+
+
+\begin{frame}{電磁場の時間発展}
+    ポテンシャル表記をMaxwell方程式の非斉次式：
+    \begin{align*}
+    \nabla \cdot \bm{E} &= 4\pi\rho \\
+    \nabla \times \bm{H}-\frac{1}{c}\pdiff{\bm{E}}{t} &= \frac{4\pi}{c}\bm{J}
+    \end{align*}
+    に代入して式変形するとポテンシャルが満たす条件を得る：
+    \begin{align*}
+        \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\phi- \frac{1}{c}\pdiff{}{t}\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\rho\\
+        \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\bm{A}+ \nabla\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\frac{\bm{J}}{c}
+        %\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}&=0
+    \end{align*}    %ここでゲージ固定を課すのはナンセンスな気がするからあとで修正する
+\end{frame}
+
+
+\begin{frame}
+    以上のことから，Maxwell方程式はポテンシャルを用いて
+    \begin{align*}
+        \bm{E}&=-\nabla\phi-\frac{1}{c}\pdiff{\bm{A}}{t}\\
+        \bm{H}&=\nabla\times\bm{A}\\
+        \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\phi- \frac{1}{c}\pdiff{}{t}\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\rho\\
+        \left(\frac{1}{c^2}\pdiff{^2}{t^2}-\nabla^2\right)&\bm{A}+ \nabla\left(\frac{1}{c}\pdiff{\phi}{t}+\nabla\cdot\bm{A}\right)=4\pi\frac{\bm{J}}{c}
+    \end{align*}
+    に書き換えることができる。
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    \begin{block}{ゲージ不変性}
+        ポテンシャル$\bm{A},\phi$に対してスカラー関数$\chi$を用いて以下の変換をしても電磁場$\bm{E},\bm{H}$は変化しない：
+        \begin{align*}
+            \bm{A}'&=\bm{A}+\nabla\chi\\
+            \phi'&=\phi-\frac{1}{c}\pdiff{\chi}{t}\\
+            \bm{E}'&=-\nabla\phi'-\frac{1}{c}\pdiff{\bm{A}'}{t}=\bm{E}\\
+            \bm{H}'&=\nabla\times\bm{A}'=\bm{H}
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    これまでの話を4元形式に書き換える。以下の記号を準備する：
+    \begin{align*}
+        \partial_\mu=\pdiff{}{x^\mu},\qquad
+        A^\mu=[\phi,\bm{A}],\qquad
+        j^\mu=[\rho,\frac{\bm{J}}{c}]
+    \end{align*}
+    \vspace{-0.8cm}
+    \begin{block}{4元形式のMaxwell方程式}
+    Maxwell方程式はポテンシャルを用いて1本の式にまとめられる：
+    \begin{align*}
+        \partial_\mu\partial^\mu A^\nu - \partial^\nu\partial_\mu A^\mu=4\pi j^\nu
+    \end{align*}
+    ゲージ変換は以下のように表される：
+    \begin{align*}
+        A'^\mu=A^\mu-\partial^\mu\chi
+    \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    4元ベクトルポテンシャルが定まると電磁場$\bm{E},\bm{H}$も一意に定まる。\\
+    4元ベクトルポテンシャルは次の電磁場テンソルを用いると電磁場との関係が見やすくなる：
+    \begin{align*}
+        F_{\mu\nu}&=\partial_\mu A_\nu-\partial_\nu A_\mu
+        =
+        \begin{pmatrix}
+    0 & E_x & E_y & E_z \\
+    -E_x & 0 & -H_z & H_y \\
+    -E_y & H_z & 0 & -H_x \\
+    -E_z & -H_y & H_x & 0
+        \end{pmatrix}
+    \end{align*}
+    電磁場テンソルを用いるとMaxwell方程式は
+    \begin{align*}
+        \partial_\mu \tensor{F}{^\mu^\nu}=4\pi j^\nu
+    \end{align*}
+    とかける。
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    質点の作用は系の状態$\bm{r},\bm{v}$の関数であるラグランジアン$L(\bm{r},\bm{v})$を時間積分した量であった。
+    \begin{block}{場の作用の考え方}
+        場を含む系では系が持つ自由度は，空間に分布する関数であり連続無限である。\\
+        そのため場のラグランジアン$L$は，空間の各点の場の状態で定まる量であるラグランジアン密度$\mathcal{L}$の体積分で定義される。\\
+        \begin{align*}
+            L=\int \mathcal{L}\mathrm{d}V
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    \begin{block}{場の作用の考え方}
+        そして，作用$S$はラグランジアンの時間積分なので
+        \begin{align*}
+            S=\int L\mathrm{d}t=\iint\mathcal{L}\>\mathrm{d}V\mathrm{d}t=\frac{1}{c}\int \mathcal{L}\>\mathrm{d}^4x
+        \end{align*}
+        のように，ラグラジアン密度の4次元体積分で作用を表すことができる。
+    \end{block}
+    作用$S$と4次元体積要素$\mathrm{d}^4x$がローレンツスカラーであることから，ラグランジアン密度もローレンツスカラーであることがわかる。
+\end{frame}
+
+
+\begin{frame}{電磁場の時間発展}
+    複数の点電荷が電磁場と共存している系を考える。
+    作用は
+    \begin{itemize}
+        \item 粒子単独の作用$S_m$
+        \item 電磁場単独の作用$S_f$
+        \item 粒子と電磁場の相互作用項$S_{mf}$
+    \end{itemize}
+    を用いて
+    \begin{align*}
+        S_{all}
+        &=S_m+S_{mf}+S_f\\
+        &=\frac{1}{c}\int \mathcal{L}_m\>\mathrm{d}^4x+\frac{1}{c}\int \mathcal{L}_{mf}\>\mathrm{d}^4x+\frac{1}{c}\int \mathcal{L}_f\>\mathrm{d}^4x
+    \end{align*}
+    と書けるだろう。\\
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    はじめに，電磁場単独の作用$S_f$について考察する。\\
+    $S_f$と$\mathcal{L}_f$に満たして欲しい条件は以下である。
+    \begin{block}{$S_f$と$\mathcal{L}_f$の要請}
+        \begin{itemize}
+            \item ローレンツ不変性：$\mathcal{L}_f$がローレンツスカラーである
+            \item ゲージ不変性：ゲージ変換で$S_f$が変化しない(物理法則が変化しない)
+            \item 運動方程式の線形性：運動方程式が$A^\mu$の2階線形微分方程式になる。\\(すなわち，$\mathcal{L}_f$が$A^\mu$の1階微分の2乗で書ける)
+            \item 電磁場の情報のみで書ける。\\($j^\mu$を含まない)
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}{電磁場の時間発展}
+    \begin{block}{$\mathcal{L}_f$ の決定}
+        電磁場テンソル $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ はゲージ不変性を満たす$A^\mu$の1階微分量である。\\
+        これをローレンツスカラーかつ2乗の形にする最も単純な方法は、自身との内積をとることである。
+    \end{block}
+    
+    以上の要請から、$\mathcal{L}_f$ の形は次のように絞られる。
+    \begin{align*}
+        \mathcal{L}_f \propto \tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}=2(\bm{H}^2-\bm{E}^2)
+    \end{align*}
+    となる。（比例係数は、相互作用項$S_{mf}$を決定した後にMaxwell方程式と比較することで求められる）
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    このようにして電磁場単独の作用は
+    \begin{align*}
+        S_f=\frac{\alpha}{c}\int \tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}\>\mathrm{d}^4x
+    \end{align*}
+    とわかった。\\
+    電磁場について変分$A^\mu+\delta A^\mu$をとり，停留条件を求めると4元形式のMaxwell方程式で4元電荷密度$j^\mu=0$とした式：
+    \begin{align*}
+        \partial^\mu\partial_\mu A^\nu-\partial^\nu\partial_\mu A^\mu=0
+    \end{align*}
+    を運動方程式として求めることができ，電荷との相互作用がない電磁場を説明する作用であることが確かめられる。
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    $S_{mf}$を作る準備として，粒子と電磁場の相互作用であるローレンツ力について考察する。
+    \begin{block}{ローレンツ力を受ける質点の作用}
+        ニュートン力学ではローレンツ力を受ける粒子系$\{\bm{r}_a,e_a\}$の運動方程式は
+        \begin{align*}
+            m\diff{^2\bm{r}_a}{t^2}= e_a(\bm{E}+\frac{\bm{v}_a}{c}\times\bm{B})
+        \end{align*}
+        と表された。この運動方程式は以下の作用の停留条件から導ける：
+        \begin{align*}
+            S=\int_{t_0}^{t_1} \left[\frac{1}{2}m\bm{v}^2-\sum_a\left(e_a\phi(\bm{r}_a)-e_a\frac{\bm{v}_a}{c}\cdot\bm{A}(\bm{r}_a)\right)\right]\>\mathrm{d}t
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    ニュートン力学での作用から相互作用項を4元形式で表して相互作用のラグランジアン密度を得ることができる。
+    \begin{align*}
+        j^\mu=[\rho,\frac{\bm{J}}{c}]=\left[\sum_a e_a\delta(\bm{r}_a-\bm{r}), \sum_a e_a \frac{\bm{v}_a}{c}\delta(\bm{r}_a-\bm{r})\right]
+    \end{align*}
+    であるので，
+    \begin{align*}
+        S_{mf}
+        &=-\int \left( \phi\rho-\frac{1}{c}\bm{A}\cdot\bm{J} \right)\>\mathrm{d}t\\
+        &=-\frac{1}{c}\int A^\mu j_\mu\>\mathrm{d}^4 x
+    \end{align*}
+    となると考えられる。
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    $S_{mf}$に満たして欲しい条件は以下である。
+    \begin{block}{$S_{mf}と\mathcal{L}_f$の要請}
+        \begin{itemize}
+            \item ローレンツ不変性：$\mathcal{L}_{mf}$がローレンツスカラーである。
+            \item 運動方程式の再現①：$S_m+S_{mf}$の停留条件から電磁場中の点電荷の運動方程式が得られる。
+            \item 運動方程式の再現②：$S_{mf}+S_f$の停留条件から電荷が存在する時のMaxwell方程式になる。
+            \item ゲージ不変性：ゲージ変換で$S_{mf}$が変化しない。
+        \end{itemize}
+    これらの要請を満たしているのかを確認する。
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    ローレンツ不変性と運動方程式の再現①を満たしていることは明らかである。
+    \begin{block}{運動方程式の再現②の確認}
+        \begin{align*}
+            S_{mf}+S_f=\frac{1}{c}\int \alpha\tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu} - A^\mu j_\mu \>\mathrm{d}^4 x
+        \end{align*}
+        に対して変分$A^\mu+\delta A^\mu$をとり，停留条件を求めると以下の式：
+        \begin{align*}
+            -4\alpha \partial_\mu\tensor{F}{^\mu^\nu} - j^\nu=0
+        \end{align*}
+        を得る。よって，$\alpha=-\frac{1}{16\pi}$とすると電荷が存在する場合のMaxwell方程式と一致することがわかる。
+    \end{block}
+\end{frame}
+
+\begin{frame}{電磁場の時間発展}
+    \begin{block}{ゲージ不変性の確認}
+        ゲージ変換$A'^\mu=A^\mu-\partial^\mu \chi$の前後で作用が不変であることを確かめる。
+        \begin{align*}
+            S'_ {mf}-S_{mf}
+            &=-\frac{1}{c}\int j_\mu\partial^\mu \chi\>\mathrm{d}^4 x\\
+            &=-\frac{1}{c}\int \left[-\partial^\mu(j_\mu \chi)+\chi\partial_\mu j^\mu\right]\>\mathrm{d}^4 x
+        \end{align*}
+        第1項は表面項なので0である。\\
+        第2項は電荷保存則$\partial_\mu j^\mu = \frac{1}{c}\left(\pdiff{\rho}{t}+\nabla\cdot\bm{J}\right)=0$より0である。\\
+        よって作用はゲージ変換の前後で不変であり，要請を満たす。
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{まとめ}
+    \begin{block}{電磁場と粒子の作用}
+        \begin{align*}
+        S_m&=-mc\sum_a \int \>\mathrm{d}s_a \\
+        S_{mf}&=\int -\frac{1}{16\pi c} \tensor{F}{^\mu^\nu}\tensor{F}{_\mu_\nu}\>\mathrm{d}^4 x\\
+        S_{f}&=-\int \frac{1}{c} A^\mu j_\mu\>\mathrm{d}^4 x
+        \end{align*}
+        であり，作用
+        $S_{all}=S_m+S_{mf}+S_f$
+        が最小になる運動が実現する。\\
+        この作用が持つ対称性から，エネルギーや運動量などの保存量を得ることができる。
+    \end{block}
+\end{frame}
+
+\end{document}
