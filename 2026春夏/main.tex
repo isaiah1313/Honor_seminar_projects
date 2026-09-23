@@ -89,26 +89,59 @@
 \section{特殊相対性理論の復習}
 
 
+%\begin{frame}{特殊相対性理論の復習}
+%    \begin{block}{慣性系}
+%        慣性の法則が成立する観測系のこと.
+%
+%        特殊相対性理論では慣性系から見た物理現象を記述する.
+%
+%        ある慣性系から見た時空の点は$x^\mu = [x^0,x^1,x^2,x^3] =[ct,x,y,z]$で表す.
+%    \end{block}
+%
+%    \begin{block}{ローレンツ変換}
+%        ある慣性系$K$に対して等速で動く慣性系$K'$からみた時空の点は
+%        \begin{equation*}
+%            x'^\mu = \tensor{\Lambda}{^\mu_\nu}x^\nu
+%        \end{equation*}
+%        で計算できる.
+%        この変換では世界間隔と呼ばれる量が不変である.
+%        \begin{equation*}
+%            ds^2 = \tensor{\eta}{_\mu_\nu}dx^\mu dx^\nu
+%        \end{equation*}
+%    \end{block}
+%\end{frame}
+
 \begin{frame}{特殊相対性理論の復習}
-    \begin{block}{慣性系}
-        慣性の法則が成立する観測系のこと。
+    \textbf{■ 慣性系と時空の表現}
+    \begin{itemize}
+        \item 慣性の法則が成立する系で物理現象を記述する
+        \item 時空の点は4元位置ベクトル $x^\mu = [ct, x, y, z]^T$ で指定する
+    \end{itemize}
 
-        異なる慣性系では同じ物理法則が成立する理論を作る.
-
-        ある慣性系から見た時空の点は$x^\mu = [ct,x,y,z]$で表す.
-
-        他の慣性系から見た時空の一点は$x'^\mu=\tensor{\Lambda}{^\mu_\nu}x^\nu$で変換する。
-    \end{block}
+    \vspace{0.8em}
+    \textbf{■ 慣性系間の変換（ローレンツ変換）}
+    \begin{itemize}
+        \item 異なる慣性系への座標変換は線形変換となる:
+        \begin{equation*}
+            x'^\mu = \tensor{\Lambda}{^\mu_\nu} x^\nu
+        \end{equation*}
+        \item この変換のもとで世界間隔 $ds^2$ は不変に保たれる:
+        \begin{equation*}
+            ds^2 = \eta_{\mu\nu} dx^\mu dx^\nu = \mathrm{const.}
+        \end{equation*}
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{特殊相対性理論の拡張}
-    \begin{block}{特殊相対性理論}
+
+
+\begin{frame}{特殊相対性理論の拡張1:座標変換}
+    \begin{block}{特殊相対性理論で用いる座標}
         直交する4方向の直線を使って時空の点を表現する.
 
         座標変換は慣性系同士のものに限られている.
     \end{block}
 
-    $\Rightarrow$もっと自由に座標変換をしたい!
+    $\Rightarrow$もっと自由に曲線座標を含めた座標変換をしたい!
 
     例:
     \begin{align*}
@@ -130,9 +163,60 @@
     \end{align*}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{特殊相対性理論の拡張2:曲がっている空間への対応}
+    \begin{block}{特殊相対性理論で考える空間}
+        直交する4本の直線をどこまでも交わらないように引くことができる「平坦な」空間を考えていた.
+    \end{block}
+
+    $\Rightarrow$時空が局所的には平坦でも大局的には「曲がっている」可能性も考慮した理論を作りたい!
+
+    例:
+\begin{center}
+    \begin{tikzpicture}[scale=0.9, >=latex]
+        % --- 左側：曲面（球面） ---
+        \begin{scope}[shift={(1.4, -0.5)}]
+            % 球体の立体的なグラデーション
+            \shade[ball color=blue!20, opacity=0.7] (0,0) circle (1.3);
+            
+            % 外周の輪郭
+            \draw[thick, blue!80!black] (0,0) circle (1.3);
+            
+            % 緯線（横方向の丸み）
+            \draw[blue!60, thin] (-1.3,0) arc (180:360:1.3 and 0.35);
+            \draw[blue!30, dashed] (1.3,0) arc (0:180:1.3 and 0.35);
+            \draw[blue!60, thin] (-1.13, 0.65) arc (180:360:1.13 and 0.3);
+            \draw[blue!60, thin] (-1.13, -0.65) arc (180:360:1.13 and 0.3);
+            
+            % 経線（縦方向の丸み）
+            \draw[blue!60, thin] (0, 1.3) arc (90:270:0.55 and 1.3);
+            \draw[blue!60, thin] (0, 1.3) arc (90:-90:0.55 and 1.3);
+            
+            % 局所的に注目する領域（赤枠）
+            \draw[thick, red] (0.15, -0.1) rectangle (0.55, 0.3);
+        \end{scope}
+        \node[below] at (1.4, -1.85) {\footnotesize 全体（曲がっている）};
+
+        % --- 拡大の点線と矢印 ---
+        \draw[dashed, red!60] (1.95, -0.2) -- (4.25, 0.3);
+        \draw[dashed, red!60] (1.95, -0.6) -- (4.25, -1.3);
+        \draw[->, thick, red] (2.2, -0.5) -- (3.6, -0.5) node[midway, above=-1pt] {\scriptsize 拡大};
+
+        % --- 右側：拡大領域（平らな格子） ---
+        \begin{scope}[shift={(5.3, -0.5)}]
+            % 円形にクリップして正方形グリッドを描画
+            \clip (0,0) circle (1.1);
+            \fill[white] (-1.2,-1.2) rectangle (1.2,1.2);
+            \draw[step=0.35, blue!70!black, thin] (-1.2,-1.2) grid (1.2,1.2);
+        \end{scope}
+        \draw[thick, red] (5.3, -0.5) circle (1.1);
+        \node[below] at (5.3, -1.85) {\footnotesize 局所的（平ら）};
+    \end{tikzpicture}
+    \end{center}    
     
 \end{frame}
+
+
+
 
 
 \end{document}
