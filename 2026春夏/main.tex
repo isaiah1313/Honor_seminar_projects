@@ -38,7 +38,7 @@
 \renewcommand{\baselinestretch}{1.2} % スライドでは1.5は広すぎるため1.2程度が一般的です
 \usepackage{url}
 
-\newcommand{\diff}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}} %常微分を書くパッケージ
+\newcommand{\diff}[2]{\frac{d #1}{d #2}} %常微分を書くパッケージ
 \newcommand{\pdiff}[2]{\frac{\mathrm{\partial} #1}{\mathrm{\partial} #2}} %常微分を書くパッケージ
 
 % 6. Beamerのデザインテーマ（Boadillaベース）
@@ -54,7 +54,7 @@
 \setbeamertemplate{subsection in toc}[square]
 
 % 7. タイトル情報
-\title{オナーセミナー最終報告}
+\title{最小作用の原理を用いたアインシュタイン方程式の導出}
 \author{笹伶夷\and 下橋以紗也\and 田處裕哉}
 \institute{大阪大学 理学部 物理学科}
 \date{\today}
@@ -127,7 +127,7 @@
         \end{equation*}
         \item この変換のもとで世界間隔 $ds^2$ は不変に保たれる:
         \begin{equation*}
-            ds^2 = \eta_{\mu\nu} dx^\mu dx^\nu = \mathrm{const.}
+            ds^2 = \eta_{\mu\nu} dx^\mu dx^\nu = \mathrm{const.} \quad (\eta_{\mu\nu} = \mathrm{diag}(1,-1,-1,-1))
         \end{equation*}
     \end{itemize}
 \end{frame}
@@ -161,6 +161,26 @@
         \end{aligned}
         \right.
     \end{align*}
+\end{frame}
+
+\begin{frame}{特殊相対論の拡張2: 曲がっている空間への対応}
+    \textbf{■ 一様な重力場と座標系}
+    \begin{itemize}
+        \item 一様な重力 $\bm{g}$ が働く系における運動方程式:
+        \begin{equation*}
+            m \frac{d^2\bm{x}}{dt^2} = \bm{F} + \textcolor{red}{m\bm{g}}
+        \end{equation*}
+        \item 加速系（自由落下系）への座標変換 $\bm{x}' = \bm{x} - \frac{1}{2}\bm{g}t^2$ を行うと:
+        \begin{equation*}
+            m \frac{d^2\bm{x}'}{dt^2} = \bm{F} \quad \text{（重力項が消去される）}
+        \end{equation*}
+    \end{itemize}
+
+    \vspace{0.8em}
+    \begin{alertblock}{疑問}
+        \centering
+        重力は適切な座標変換を選べば\textbf{常に消去できる}のか$\cdots$?
+    \end{alertblock}
 \end{frame}
 
 \begin{frame}{特殊相対論の拡張2:曲がっている空間への対応}
@@ -212,20 +232,18 @@
         \node[below] at (5.3, -1.85) {\footnotesize 局所的（平ら）};
     \end{tikzpicture}
     \end{center}    
-    
 \end{frame}
+
 
 \section{一般相対論の舞台}
 
 % ここで数学的にローレンツ多様体を導入するのか,時空に対していくつかの条件を要請して作るのかどっちがいいかな
 
 \begin{frame}{一般相対論の舞台}
-    \begin{block}{曲がっている空間の表現方法}
-        曲がっている空間上の点の位置は数個の実数値で指定できる.
+    \begin{block}{曲がっている時空の表現方法}
+        曲がっている時空の点の位置は4個の実数値で指定できる.
 
-        点の位置を指定するのに必要な実数値の個数を次元と呼び,
-
-        このような曲がっている空間を多様体と呼ぶ.
+        また，点の位置を指定するのに使う実数値の組を\textcolor{red}{局所座標}と呼ぶ.
     \end{block}
     例:
 
@@ -235,13 +253,79 @@
     
     $xy$平面に射影した座標$(x,y)$で指定することもできる.
 
-    $\Rightarrow$この球面は2次元の多様体であると言える.
+\end{frame}
 
+%\begin{frame}{一般相対論の舞台}
+%    \begin{block}{時空上の物理量}
+%        物理量は座標変換$(x^\mu\to y^\mu)$をしたときの変換則で分類される.
+%        \begin{itemize}
+%            \item スカラー: 座標変換で不変な量
+%            \item 反変ベクトル: $A'^\mu = \pdiff{y^\mu}{x^\nu} A^\nu$
+%            \item 共変ベクトル: $A'_\mu = \pdiff{x^\nu}{y^\mu} A_\nu$
+%            \item テンソル: 複数の添字をもち, 添字ごとに反変・共変の変換を受ける量
+%            \begin{itemize}
+%                \item 2階反変テンソル: $T'^{\mu\nu} = \pdiff{y^\mu}{x^\rho} \pdiff{y^\nu}{x^\sigma} T^{\rho\sigma}$
+%                \item 2階共変テンソル: $T'_{\mu\nu} = \pdiff{x^\rho}{y^\mu} \pdiff{x^\sigma}{y^\nu} T_{\rho\sigma}$
+%                \item 2階混合テンソル: $\tensor{{T'}}{^\mu_\nu} = \pdiff{y^\mu}{x^\rho} \pdiff{x^\sigma}{y^\nu} \tensor{T}{^\rho_\sigma}$
+%            \end{itemize}
+%            \item 一般の$(k, l)$階テンソル $T^{\mu_1 \dots \mu_k}_{\nu_1 \dots \nu_l}$ も各添字について同様に変換する
+%        \end{itemize}
+%    \end{block}
+%\end{frame}
+
+
+\begin{frame}{一般相対論の舞台}
+    \begin{block}{時空上の物理量}
+        物理量は座標変換 $(x^\mu \to y^\mu)$ に対する変換則で分類される.
+        
+        \vspace{0.4em}
+        \centering
+        \renewcommand{\arraystretch}{1.5}
+        \small
+        \begin{tabular}{lll}
+            \hline
+            分類 & 記法 & 変換則 \\
+            \hline
+            スカラー & $\phi$ & $\phi' = \phi$ \\
+            反変ベクトル & $A^\mu$ & $A'^\mu = \pdiff{y^\mu}{x^\nu} A^\nu$ \\
+            共変ベクトル & $A_\mu$ & $A'_\mu = \pdiff{x^\nu}{y^\mu} A_\nu$ \\
+            2階テンソル & $T^{\mu\nu}$ & $T'^{\mu\nu} = \pdiff{y^\mu}{x^\rho} \pdiff{y^\nu}{x^\sigma} T^{\rho\sigma}$ \\
+            \hline
+        \end{tabular}
+        \vspace{0.3em}
+    \end{block}
+    \vspace{0.3em}
+    $\Rightarrow$ 一般のテンソルは、\textbf{上付き添字1つにつき $\pdiff{y}{x}$}、\textbf{下付き添字1つにつき $\pdiff{x}{y}$} が掛かる.
 \end{frame}
 
 
 \begin{frame}{一般相対論の舞台}
-    
+    \begin{block}{時空の2点間の距離の測り方}
+        局所座標として$x^\mu$を採用する.
+
+        点P$(x^\mu)$と点Q$(x^\mu + dx^\mu)$の距離の二乗$ds^2$は一般に$dx^\mu$の二次形式
+        \begin{equation*}
+            ds^2 = g_{\mu_\nu} dx^\mu dx^\nu
+        \end{equation*}
+        で計算できる.この係数行列$g_{\mu_\nu}$を\textcolor{red}{計量テンソル}と呼ぶ.
+
+        上付きの計量テンソル$g^{\mu_\nu}$を$g_{\mu\nu}$の逆行列として定義する:\>$g_{\mu\nu}g^{\nu\lambda}=\delta^\lambda_\mu$
+
+        これらの計量テンソルを用いてベクトルやテンソルの添字を上下する:
+        \begin{align*}
+            A^\mu = g^{\mu\nu}A_\nu \quad,\quad A_\mu = g_{\mu\nu}A^\nu
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{一般相対論の舞台}
+    \begin{block}{物理的な要請①}
+        宇宙のどこにいても，自由落下する観測者の近くでは慣性系になっている.
+    \begin{center}
+        $\Downarrow$
+    \end{center}
+        時空の各点で局所的に計量が$g_{\mu\nu} = \eta_{\mu\nu}$となるような座標を常に選択することができる.
+    \end{block}
 \end{frame}
 
 
