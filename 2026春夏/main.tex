@@ -175,63 +175,86 @@
             m \frac{d^2\bm{x}'}{dt^2} = \bm{F} \quad \text{（重力項が消去される）}
         \end{equation*}
     \end{itemize}
-
-    \vspace{0.8em}
     \begin{alertblock}{疑問}
         \centering
-        重力は適切な座標変換を選べば\textbf{常に消去できる}のか$\cdots$?
+        重力は適切な座標変換を選べば常に消去できるのか$\cdots$?
     \end{alertblock}
 \end{frame}
 
-\begin{frame}{特殊相対論の拡張2:曲がっている空間への対応}
-    \begin{block}{特殊相対論で考える空間}
-        直交する4本の直線をどこまでも交わらないように引くことができる「平坦な」空間を考えていた.
-    \end{block}
+\begin{frame}{特殊相対論の拡張2: 曲がっている空間への対応}
+    \textbf{■ 平坦時空における加速座標系の限界}
+    \begin{itemize}
+        \item 平坦時空で作れる座標変換は並進と回転の組み合わせのみ
+        \item 平坦時空の並進・回転で生じる力は，重力のように無限遠点で減衰しない
+    \end{itemize}
 
-    $\Rightarrow$時空が局所的には平坦でも大局的には「曲がっている」可能性も考慮した理論を作りたい!
+    \vspace{0.2em}
+    $\Rightarrow$ 大局的には時空は曲がっていて，局所的にのみ平坦である
 
-    例:
-\begin{center}
-    \begin{tikzpicture}[scale=0.9, >=latex]
-        % --- 左側：曲面（球面） ---
-        \begin{scope}[shift={(1.4, -0.5)}]
-            % 球体の立体的なグラデーション
-            \shade[ball color=blue!20, opacity=0.7] (0,0) circle (1.3);
-            
-            % 外周の輪郭
-            \draw[thick, blue!80!black] (0,0) circle (1.3);
-            
-            % 緯線（横方向の丸み）
-            \draw[blue!60, thin] (-1.3,0) arc (180:360:1.3 and 0.35);
-            \draw[blue!30, dashed] (1.3,0) arc (0:180:1.3 and 0.35);
-            \draw[blue!60, thin] (-1.13, 0.65) arc (180:360:1.13 and 0.3);
-            \draw[blue!60, thin] (-1.13, -0.65) arc (180:360:1.13 and 0.3);
-            
-            % 経線（縦方向の丸み）
-            \draw[blue!60, thin] (0, 1.3) arc (90:270:0.55 and 1.3);
-            \draw[blue!60, thin] (0, 1.3) arc (90:-90:0.55 and 1.3);
-            
-            % 局所的に注目する領域（赤枠）
-            \draw[thick, red] (0.15, -0.1) rectangle (0.55, 0.3);
+    \begin{center}
+    \begin{tikzpicture}[>=latex]
+        % --- 左側：一般の曲面（たわんだシート） ---
+        \begin{scope}[shift={(1.0, 0)}]
+            % 曲面の陰影
+            \shade[top color=blue!8, bottom color=blue!25]
+                (-1.3, 0.3) to[out=15, in=165] (1.3, 0.4)
+                to[out=-80, in=100] (1.0, -0.6)
+                to[out=165, in=15] (-1.5, -0.5)
+                to[out=100, in=-80] cycle;
+
+            % 曲面の輪郭でクリップ（グリッドのはみ出しを完全に防止）
+            \begin{scope}
+                \clip (-1.3, 0.3) to[out=15, in=165] (1.3, 0.4)
+                    to[out=-80, in=100] (1.0, -0.6)
+                    to[out=165, in=15] (-1.5, -0.5)
+                    to[out=100, in=-80] cycle;
+
+                % 横方向の湾曲格子線（本数を増加）
+                \draw[blue!45, thin] (-1.8, -0.38) to[out=15, in=165] (1.5, -0.38);
+                \draw[blue!45, thin] (-1.8, -0.20) to[out=15, in=165] (1.5, -0.20);
+                \draw[blue!45, thin] (-1.8, -0.02) to[out=15, in=165] (1.5, -0.02);
+                \draw[blue!45, thin] (-1.8,  0.16) to[out=15, in=165] (1.5,  0.16);
+
+                % 縦方向の湾曲格子線（本数を増加）
+                \draw[blue!45, thin] (-0.95, 0.6) to[out=-80, in=100] (-1.15, -0.8);
+                \draw[blue!45, thin] (-0.60, 0.6) to[out=-80, in=100] (-0.80, -0.8);
+                \draw[blue!45, thin] (-0.25, 0.6) to[out=-80, in=100] (-0.45, -0.8);
+                \draw[blue!45, thin] ( 0.10, 0.6) to[out=-80, in=100] (-0.10, -0.8);
+                \draw[blue!45, thin] ( 0.45, 0.6) to[out=-80, in=100] ( 0.25, -0.8);
+                \draw[blue!45, thin] ( 0.80, 0.6) to[out=-80, in=100] ( 0.60, -0.8);
+            \end{scope}
+
+            % 曲面の輪郭線（クリップの外側に描画して境界をシャープに保つ）
+            \draw[thick, blue!80!black]
+                (-1.3, 0.3) to[out=15, in=165] (1.3, 0.4)
+                to[out=-80, in=100] (1.0, -0.6)
+                to[out=165, in=15] (-1.5, -0.5)
+                to[out=100, in=-80] cycle;
+
+            % 局所的に着目する領域（赤枠）
+            \draw[thick, red] (-0.15, -0.22) rectangle (0.15, 0.05);
         \end{scope}
-        \node[below] at (1.4, -1.85) {\footnotesize 全体（曲がっている）};
+
+        % 左側キャプション（2行に分割）
+        \node[below=3pt, align=center] at (1.0, -0.7) {\scriptsize 全体: 曲がっている\\[-1pt]\scriptsize（現実の重力場）};
 
         % --- 拡大の点線と矢印 ---
-        \draw[dashed, red!60] (1.95, -0.2) -- (4.25, 0.3);
-        \draw[dashed, red!60] (1.95, -0.6) -- (4.25, -1.3);
-        \draw[->, thick, red] (2.2, -0.5) -- (3.6, -0.5) node[midway, above=-1pt] {\scriptsize 拡大};
+        \draw[dashed, red!60] (1.15, 0.05) -- (4.55, 0.35);
+        \draw[dashed, red!60] (1.15, -0.22) -- (4.55, -0.45);
+        \draw[->, thick, red] (1.6, -0.08) -- (4.0, -0.08) node[midway, above=-1pt] {\scriptsize 拡大};
 
         % --- 右側：拡大領域（平らな格子） ---
-        \begin{scope}[shift={(5.3, -0.5)}]
-            % 円形にクリップして正方形グリッドを描画
-            \clip (0,0) circle (1.1);
-            \fill[white] (-1.2,-1.2) rectangle (1.2,1.2);
-            \draw[step=0.35, blue!70!black, thin] (-1.2,-1.2) grid (1.2,1.2);
+        \begin{scope}[shift={(5.2, -0.08)}]
+            \clip (0,0) circle (0.65);
+            \fill[white] (-0.75,-0.75) rectangle (0.75,0.75);
+            \draw[step=0.22, blue!70!black, thin] (-0.75,-0.75) grid (0.75,0.75);
         \end{scope}
-        \draw[thick, red] (5.3, -0.5) circle (1.1);
-        \node[below] at (5.3, -1.85) {\footnotesize 局所的（平ら）};
+        \draw[thick, red] (5.2, -0.08) circle (0.65);
+
+        % 右側キャプション（2行に分割）
+        \node[below=3pt, align=center] at (5.2, -0.7) {\scriptsize 局所的: 平ら\\[-1pt]\scriptsize（局所慣性系:自由落下する系）};
     \end{tikzpicture}
-    \end{center}    
+    \end{center}
 \end{frame}
 
 
@@ -318,16 +341,41 @@
     \end{block}
 \end{frame}
 
+
 \begin{frame}{一般相対論の舞台}
-    \begin{block}{物理的な要請①}
+    \begin{block}{物理的な要請}
         宇宙のどこにいても，自由落下する観測者の近くでは慣性系になっている.
-    \begin{center}
-        $\Downarrow$
-    \end{center}
-        時空の各点で局所的に計量が$g_{\mu\nu} = \eta_{\mu\nu}$となるような座標を常に選択することができる.
+        \begin{center}
+            $\Downarrow$
+        \end{center}
+        時空の各点で局所的に計量が$g_{\mu\nu} = \eta_{\mu\nu}$となるガリレイ的な座標$\xi^\mu$を選択できる.
     \end{block}
+    一般の曲線座標への変換$\xi^\mu\to x^\mu$の元で，計量は
+    \begin{equation*}
+        g_{\mu\nu} = \eta_{\rho\sigma}\pdiff{\xi^\rho}{x^\mu}\pdiff{\xi^\sigma}{x^\nu}
+    \end{equation*}
+    のように合同変換される.
 \end{frame}
 
+\begin{frame}{一般相対論の舞台}
+    \begin{block}{4次元体積要素とヤコビアンの同定}
+        ガリレイ的座標での体積要素 $d\Omega = d^4\xi$ を一般座標 $x^\mu$ へ変数変換すると、
+        \begin{equation*}
+            d\Omega = \left| \det\left(\pdiff{\xi}{x}\right) \right| d^4x \quad (d^4x \equiv dx^0 dx^1 dx^2 dx^3)
+        \end{equation*}
+        計量の変換式 $g_{\mu\nu} = \eta_{\rho\sigma} \pdiff{\xi^\rho}{x^\mu} \pdiff{\xi^\sigma}{x^\nu}$ の行列式をとると（$\det\eta = -1$ より）、
+        \begin{equation*}
+            g = - \left| \det\left(\pdiff{\xi}{x}\right) \right|^2
+            \quad \Longrightarrow \quad
+            \left| \det\left(\pdiff{\xi}{x}\right) \right| = \sqrt{-g}
+        \end{equation*}
+    \end{block}
+
+    \vspace{0.6em}
+    \centering
+    \large
+    $\therefore \quad \bm{d\Omega = \sqrt{-g} \, d^4x}$ \normalsize \quad （不変体積要素）
+\end{frame}
 
 
 \end{document}
