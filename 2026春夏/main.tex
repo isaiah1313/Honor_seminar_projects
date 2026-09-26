@@ -88,29 +88,6 @@
 %===============================================================
 \section{特殊相対論の復習と拡張の必要性}
 
-
-%\begin{frame}{特殊相対論の復習}
-%    \begin{block}{慣性系}
-%        慣性の法則が成立する観測系のこと.
-%
-%        特殊相対論では慣性系から見た物理現象を記述する.
-%
-%        ある慣性系から見た時空の点は$x^\mu = [x^0,x^1,x^2,x^3] =[ct,x,y,z]$で表す.
-%    \end{block}
-%
-%    \begin{block}{ローレンツ変換}
-%        ある慣性系$K$に対して等速で動く慣性系$K'$からみた時空の点は
-%        \begin{equation*}
-%            x'^\mu = \tensor{\Lambda}{^\mu_\nu}x^\nu
-%        \end{equation*}
-%        で計算できる.
-%        この変換では世界間隔と呼ばれる量が不変である.
-%        \begin{equation*}
-%            ds^2 = \tensor{\eta}{_\mu_\nu}dx^\mu dx^\nu
-%        \end{equation*}
-%    \end{block}
-%\end{frame}
-
 \begin{frame}{特殊相対論の復習}
     \textbf{■ 慣性系と時空の表現}
     \begin{itemize}
@@ -260,9 +237,7 @@
 
 \section{一般相対論の舞台}
 
-% ここで数学的にローレンツ多様体を導入するのか,時空に対していくつかの条件を要請して作るのかどっちがいいかな
-
-\begin{frame}{一般相対論の舞台}
+\begin{frame}{一般相対論の舞台:局所座標}
     \begin{block}{曲がっている時空の表現方法}
         曲がっている時空の点の位置は4個の実数値で指定できる.
 
@@ -278,26 +253,7 @@
 
 \end{frame}
 
-%\begin{frame}{一般相対論の舞台}
-%    \begin{block}{時空上の物理量}
-%        物理量は座標変換$(x^\mu\to y^\mu)$をしたときの変換則で分類される.
-%        \begin{itemize}
-%            \item スカラー: 座標変換で不変な量
-%            \item 反変ベクトル: $A'^\mu = \pdiff{y^\mu}{x^\nu} A^\nu$
-%            \item 共変ベクトル: $A'_\mu = \pdiff{x^\nu}{y^\mu} A_\nu$
-%            \item テンソル: 複数の添字をもち, 添字ごとに反変・共変の変換を受ける量
-%            \begin{itemize}
-%                \item 2階反変テンソル: $T'^{\mu\nu} = \pdiff{y^\mu}{x^\rho} \pdiff{y^\nu}{x^\sigma} T^{\rho\sigma}$
-%                \item 2階共変テンソル: $T'_{\mu\nu} = \pdiff{x^\rho}{y^\mu} \pdiff{x^\sigma}{y^\nu} T_{\rho\sigma}$
-%                \item 2階混合テンソル: $\tensor{{T'}}{^\mu_\nu} = \pdiff{y^\mu}{x^\rho} \pdiff{x^\sigma}{y^\nu} \tensor{T}{^\rho_\sigma}$
-%            \end{itemize}
-%            \item 一般の$(k, l)$階テンソル $T^{\mu_1 \dots \mu_k}_{\nu_1 \dots \nu_l}$ も各添字について同様に変換する
-%        \end{itemize}
-%    \end{block}
-%\end{frame}
-
-
-\begin{frame}{一般相対論の舞台}
+\begin{frame}{一般相対論の舞台:テンソル}
     \begin{block}{時空上の物理量}
         物理量は座標変換 $(x^\mu \to y^\mu)$ に対する変換則で分類される.
         
@@ -322,7 +278,7 @@
 \end{frame}
 
 
-\begin{frame}{一般相対論の舞台}
+\begin{frame}{一般相対論の舞台:計量}
     \begin{block}{時空の2点間の距離の測り方}
         局所座標として$x^\mu$を採用する.
 
@@ -342,7 +298,7 @@
 \end{frame}
 
 
-\begin{frame}{一般相対論の舞台}
+\begin{frame}{一般相対論の舞台:ガリレイ的座標}
     \begin{block}{物理的な要請}
         宇宙のどこにいても，自由落下する観測者の近くでは慣性系になっている.
         \begin{center}
@@ -357,7 +313,7 @@
     のように合同変換される.
 \end{frame}
 
-\begin{frame}{一般相対論の舞台}
+\begin{frame}{一般相対論の舞台:積分要素}
     \begin{block}{4次元体積要素とヤコビアンの同定}
         ガリレイ的座標での体積要素 $d\Omega = d^4\xi$ を一般座標 $x^\mu$ へ変数変換すると、
         \begin{equation*}
@@ -376,6 +332,29 @@
     \large
     $\therefore \quad \bm{d\Omega = \sqrt{-g} \, d^4x}$ \normalsize \quad （不変体積要素）
 \end{frame}
+
+\begin{frame}{一般相対論の舞台:接続}
+\end{frame}
+
+\begin{frame}{一般相対論の舞台:リーマン曲率テンソル}
+\end{frame}
+
+\begin{frame}{一般相対論の舞台:曲率テンソル}
+\end{frame}
+
+\section{最小作用の原理}
+
+\begin{frame}{最小作用の原理とは}
+\end{frame}
+
+\section{アインシュタイン方程式}
+
+\begin{frame}{時空を決定する作用}
+\end{frame}
+
+\begin{frame}{時空の運動方程式}
+\end{frame}
+
 
 
 \end{document}
