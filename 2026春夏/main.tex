@@ -566,37 +566,27 @@
 \section{アインシュタイン方程式}
 
 \begin{frame}{時空を決定する作用}
-    \small
-    $\blacksquare$ 重力ポテンシャル $g_{\mu\nu}$ の1階微分までを含む作用を考える.
+    $\blacksquare$ 作用に課す条件
+    \begin{itemize}
+        \item 座標変換に対して不変
+        \item 境界項を除き，$g_{\mu\nu}$ の1階微分までを含む
+    \end{itemize}
 
-    $R$ は2階微分を含むが，作用密度では全微分として分離できる:
-    \begin{equation*}
-        \sqrt{-g}\,R
-        = \underbrace{\mathcal{D}_1(g,\partial g)}_{\text{1階微分までの密度}}
-        + \underbrace{\partial_\lambda B^\lambda}_{\text{積分すると境界項}}
-    \end{equation*}
+    \vspace{0.6em}
+    $\blacksquare$ リッチスカラー $R$ はこの条件を満たす
+    \begin{itemize}
+        \item $R$ はスカラーなので，$\int R\sqrt{-g}\,d^4x$ は不変
+        \item 2階微分を含む部分は，境界項として分離できる
+    \end{itemize}
 
-    $\blacksquare$ リッチスカラーの変分（計量条件 $\nabla_\lambda g^{\mu\nu}=0$ を使用）
-    \begin{align*}
-        \delta R &= R_{\mu\nu}\,\delta g^{\mu\nu}
-            + \underbrace{\nabla_\lambda W^\lambda}_{\text{$\delta g$ の2階微分を含む項}},\\[-0.4em]
-        W^\lambda &\equiv g^{\mu\nu}\delta\Gamma^\lambda_{\mu\nu}
-            - g^{\mu\lambda}\delta\Gamma^\nu_{\mu\nu}.
-    \end{align*}
-    $\sqrt{-g}\,\nabla_\lambda W^\lambda
-      =\partial_\lambda(\sqrt{-g}\,W^\lambda)$ より，この項も境界項となる.
-
-    \begin{block}{境界項を除けば1階微分までの作用と同等}
-        境界付近で $\delta g_{\mu\nu}=0$ とすれば，境界項は変分に寄与しない.
-        \[
-            \boxed{\mathcal{L}=R},\qquad S_g\propto\int_{\mathcal M}R\sqrt{-g}\,d^4x
-        \]
-    \end{block}
-    {\scriptsize 宇宙定数は省略する. 場の方程式には $g_{\mu\nu}$ の2階微分が残る.}
+    \vspace{0.4em}
+    \begin{center}
+        $\displaystyle \boxed{\mathcal{L}=R}$
+        \qquad {\small （比例定数・宇宙定数は省略）}
+    \end{center}
+    {\footnotesize 境界付近で変分をゼロとすれば，境界項は変分に寄与しない.}
     % Reference: David Tong, General Relativity, section 4.1.
     % https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S4.html
-    % L_1 is a coordinate-dependent density, not a generally covariant scalar.
-    % Vanishing delta g only on the boundary is insufficient for the bare EH action.
 \end{frame}
 
 \begin{frame}{時空の運動方程式}
