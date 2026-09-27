@@ -411,7 +411,7 @@
     \end{equation*}
 \end{frame}
 
-\begin{frame}{一般相対論の舞台: 曲率の幾何学的解釈（ホロノミー）}
+\begin{frame}{一般相対論の舞台:リーマン曲率テンソル}
     \begin{columns}[c]
         % --- 左カラム: TikZ立体図 ---
         \begin{column}{0.40\textwidth}
@@ -496,8 +496,6 @@
     \end{columns}
 \end{frame}
 
-
-
 \begin{frame}{一般相対論の舞台: リーマン曲率テンソル}
     $\blacksquare$ 微小平行四辺形による曲率の定義
     \begin{itemize}
@@ -517,12 +515,52 @@
     \end{equation*}
 \end{frame}
 
-\begin{frame}{一般相対論の舞台:曲率テンソルの自由度と曲率を表す量}
+\begin{frame}{一般相対論の舞台: 曲率テンソルの自由度と曲率を表す量}
+    $\blacksquare$ 代称性と独立成分数（自由度 $256 \to 20$）
+    \begin{itemize}\small
+        \item 4階共変成分 $R_{\mu\nu\rho\sigma} = g_{\mu\lambda} R^\lambda_{\ \nu\rho\sigma}$ は以下の関係式を満たす:
+        \begin{itemize}\footnotesize
+            \item 前後ペアの反対称性: $R_{\mu\nu\rho\sigma} = -R_{\nu\mu\rho\sigma} = -R_{\mu\nu\sigma\rho}$
+            \item ペアの入れ替え対称性: $R_{\mu\nu\rho\sigma} = R_{\rho\sigma\mu\nu}$
+            \item 第1ビアンキ恒等式: $R_{\mu\nu\rho\sigma} + R_{\mu\rho\sigma\nu} + R_{\mu\sigma\nu\rho} = 0$
+        \end{itemize}
+        \item 4次元時空において、独立成分の数は $4^4=256$ 個から 20 個に減少する
+    \end{itemize}
+
+    \vspace{0.2em}
+    $\blacksquare$ 縮約によって得られる曲率の量
+    \begin{itemize}\small
+        \item リッチテンソル（2階対称テンソル、独立成分 10 個）:
+        \begin{equation*}
+            R_{\mu\nu} \equiv R^\lambda_{\ \mu\lambda\nu} \quad (R_{\mu\nu} = R_{\nu\mu})
+        \end{equation*}
+        \item スカラー曲率（リッチスカラー）:
+        \begin{equation*}
+            R \equiv g^{\mu\nu} R_{\mu\nu}
+        \end{equation*}
+    \end{itemize}
 \end{frame}
 
 \section{最小作用の原理}
 
 \begin{frame}{最小作用の原理とは}
+    $\blacksquare$ 時空全体における作用の定義
+    \begin{itemize}
+        \item 系の状態$g_{\mu\nu}$から定まるスカラー量 $\mathcal{L}$ を時空領域全体で積分した量:
+        \begin{equation*}
+            S = \int \mathcal{L} \sqrt{-g(x)} \, d^4x
+        \end{equation*}
+    \end{itemize}
+
+    \vspace{0.4em}
+    $\blacksquare$ 場の変分と停留条件
+    \begin{itemize}
+        \item 時空の境界 $\partial \mathcal{M}$ で消える仮想的な微小変化$g_{\mu\nu}\to g_{\mu\nu}+\delta g_{\mu\nu}$を考える:
+        \item 物理的に実現する場の配位は、任意の微小変化に対して作用が停留（不変）となる:
+        \begin{equation*}
+            \delta S = 0
+        \end{equation*}
+    \end{itemize}
 \end{frame}
 
 \section{アインシュタイン方程式}
