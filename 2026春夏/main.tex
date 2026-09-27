@@ -29,7 +29,7 @@
 % 4. 図・グラフ・枠組み（TikZ & tcolorbox）
 \usepackage{graphicx}
 \usepackage{tikz}
-\usetikzlibrary{math, arrows.meta, angles, quotes, decorations.markings}
+\usetikzlibrary{math, arrows.meta,calc , angles, quotes, decorations.markings}
 \usepackage[most]{tcolorbox} % 枠付きボックス（ascmacの代わりになります）
 
 
@@ -411,8 +411,110 @@
     \end{equation*}
 \end{frame}
 
-\begin{frame}{一般相対論の舞台:リーマン曲率テンソル}
-    
+\begin{frame}{一般相対論の舞台: 曲率の幾何学的解釈（ホロノミー）}
+    \begin{columns}[c]
+        % --- 左カラム: TikZ立体図 ---
+        \begin{column}{0.40\textwidth}
+            \centering
+            \begin{tikzpicture}[
+                scale=1.00,
+                >=stealth,
+                x={(-0.62cm,-0.32cm)},
+                y={(0.95cm,-0.08cm)},
+                z={(0cm,1.0cm)}
+            ]
+                % 座標軸
+                \draw[->, semithick] (0,0,0) -- (2.7,0,0) node[below left, scale=0.75] {$x$};
+                \draw[->, semithick] (0,0,0) -- (0,2.9,0) node[below right, scale=0.75] {$y$};
+                \draw[->, semithick] (0,0,0) -- (0,0,2.5) node[above left, scale=0.75] {$z$};
+
+                % 曲面パッチの薄い塗りつぶし
+                \fill[gray!10, fill opacity=0.5] 
+                    plot[domain=0:90, samples=15] ({2.0*sin(\x)}, {0}, {2.0*cos(\x)}) --
+                    plot[domain=0:90, samples=15] ({2.0*cos(\x)}, {2.0*sin(\x)}, {0}) --
+                    plot[domain=90:0, samples=15] ({0}, {2.0*sin(\x)}, {2.0*cos(\x)}) -- cycle;
+
+                % 薄い黒のメッシュ（緯線・経線）
+                \foreach \th in {18, 36, 54, 72} {
+                    \draw[black!20, thin] plot[domain=0:90, samples=15] 
+                        ({2.0*sin(\th)*cos(\x)}, {2.0*sin(\th)*sin(\x)}, {2.0*cos(\th)});
+                }
+                \foreach \ph in {18, 36, 54, 72} {
+                    \draw[black!20, thin] plot[domain=0:90, samples=15] 
+                        ({2.0*sin(\x)*cos(\ph)}, {2.0*sin(\x)*sin(\ph)}, {2.0*cos(\x)});
+                }
+
+                % 境界線（測地線）
+                \draw[line width=0.9pt, black] plot[domain=0:90, samples=15] ({2.0*sin(\x)}, {0}, {2.0*cos(\x)});
+                \draw[line width=0.9pt, black] plot[domain=0:90, samples=15] ({2.0*cos(\x)}, {2.0*sin(\x)}, {0});
+                \draw[line width=0.9pt, black] plot[domain=0:90, samples=15] ({0}, {2.0*sin(\x)}, {2.0*cos(\x)});
+
+                % 頂点ラベル P, Q, R
+                \node[below left=1pt, scale=0.8] at (2.0, 0, -0.1) {$\mathrm{P}$};
+                \node[below right=1pt, scale=0.8] at (0, 2.0, 0) {$\mathrm{Q}$};
+                \node[above right=1pt, scale=0.8] at (0, 0, 2.0) {$\mathrm{R}$};
+
+                % 経路の矢印（水色）: P -> Q -> R -> P
+                \draw[cyan!80!black, semithick, ->] plot[domain=18:72, samples=10] ({2.25*cos(\x)}, {2.25*sin(\x)}, {-0.05});
+                \draw[cyan!80!black, semithick, ->] plot[domain=72:18, samples=10] ({-0.05}, {2.25*sin(\x)}, {2.25*cos(\x)});
+                \draw[cyan!80!black, semithick, ->] plot[domain=18:72, samples=10] ({2.25*sin(\x)}, {-0.05}, {2.25*cos(\x)});
+
+                % 各点のベクトル（青）
+                % 1. 点P: 初期ベクトル（北向き）
+                \draw[blue, line width=1.6pt, ->] (2.0, 0, 0) -- ++(0, 0, 0.85) node[above left, scale=0.7] {$\bm{v}_0$};
+                % 2. 点P: 1周後のベクトル（西向き＝-y 方向）
+                \draw[blue, line width=1.6pt, ->] (2.0, 0, 0) -- ++(0, -0.85, 0) node[left, scale=0.7] {$\bm{v}_{\mathrm{final}}$};
+                % 直角マーク
+                \draw[blue!70!black, thin] (2.0, 0, 0.18) -- ++(0, -0.18, 0) -- ++(0, 0, -0.18);
+
+                % 3. 点Q: 赤道上（北向きを維持）
+                \draw[blue, line width=1.6pt, ->] (0, 2.0, 0) -- ++(0, 0, 0.85) node[above right, scale=0.7] {$\bm{v}_Q$};
+
+                % 4. 点R: 北極（進行方向である -y 方向＝左向き）
+                \draw[blue, line width=1.6pt, ->] (0, 0, 2.0) -- ++(0, -0.85, 0) node[above left, scale=0.7] {$\bm{v}_R$};
+            \end{tikzpicture}
+        \end{column}
+
+        % --- 右カラム: 幾何学的解説 ---
+        \begin{column}{0.60\textwidth}
+            球面上のループ$\mathrm{P}\to\mathrm{Q}\to\mathrm{R}\to\mathrm{P}$
+            
+            に沿ってベクトルを平行移動させると，
+            
+            $\bm{v}_{\text{final}}$は$\bm{v}_0$と一致しない.
+
+            \begin{center}
+                $\Downarrow$
+            \end{center}
+
+            \begin{alertblock}{曲率の計算方法}
+                ベクトルをループに沿って平行移動させると
+                
+                空間の曲がり具合の情報が得られる!!
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+
+\begin{frame}{一般相対論の舞台: リーマン曲率テンソル}
+    $\blacksquare$ 微小平行四辺形による曲率の定義
+    \begin{itemize}
+        \item 点 $\mathrm{P}(x)$ から点 $\mathrm{S}(x+du+dv)$ へ至る2つの経路を考える:
+        \begin{itemize}
+            \item 経路1: $\mathrm{P} \to \mathrm{Q}(x+du) \to \mathrm{S}(x+du+dv)$
+            \item 経路2: $\mathrm{P} \to \mathrm{R}(x+dv) \to \mathrm{S}(x+du+dv)$
+        \end{itemize}
+        \item 各経路でベクトル $A^\mu$ を平行移動させた結果の差を計算する:
+        \begin{equation*}
+            \Delta A^\mu = A^\mu_{\mathrm{P \to Q \to S}} - A^\mu_{\mathrm{P \to R \to S}} = R^\mu_{\ \nu\rho\sigma} A^\nu(x) du^\rho dv^\sigma
+        \end{equation*}
+    \end{itemize}
+    ただし，$R^\mu_{\ \nu\rho\sigma}$の具体的な表式は以下である:
+    \begin{equation*}
+        R^\mu_{\ \nu\rho\sigma} = \pdiff{\Gamma^\mu_{\nu\sigma}}{x^\rho} - \pdiff{\Gamma^\mu_{\nu\rho}}{x^\sigma} + \Gamma^\mu_{\lambda\rho}\Gamma^\lambda_{\nu\sigma} - \Gamma^\mu_{\lambda\sigma}\Gamma^\lambda_{\nu\rho}
+    \end{equation*}
 \end{frame}
 
 \begin{frame}{一般相対論の舞台:曲率テンソルの自由度と曲率を表す量}
