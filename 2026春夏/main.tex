@@ -89,14 +89,14 @@
 \section{特殊相対論の復習と拡張の必要性}
 
 \begin{frame}{特殊相対論の復習}
-    \textbf{■ 慣性系と時空の表現}
+    $\blacksquare$ 慣性系と時空の表現
     \begin{itemize}
         \item 慣性の法則が成立する系で物理現象を記述する
         \item 時空の点は4元位置ベクトル $x^\mu = [ct, x, y, z]^T$ で指定する
     \end{itemize}
 
     \vspace{0.8em}
-    \textbf{■ 慣性系間の変換（ローレンツ変換）}
+    $\blacksquare$ 慣性系間の変換（ローレンツ変換）
     \begin{itemize}
         \item 異なる慣性系への座標変換は線形変換となる:
         \begin{equation*}
@@ -141,7 +141,7 @@
 \end{frame}
 
 \begin{frame}{特殊相対論の拡張2: 曲がっている空間への対応}
-    \textbf{■ 一様な重力場と座標系}
+    $\blacksquare$ 一様な重力場と座標系
     \begin{itemize}
         \item 一様な重力 $\bm{g}$ が働く系における運動方程式:
         \begin{equation*}
@@ -159,7 +159,7 @@
 \end{frame}
 
 \begin{frame}{特殊相対論の拡張2: 曲がっている空間への対応}
-    \textbf{■ 平坦時空における加速座標系の限界}
+    $\blacksquare$ 平坦時空における加速座標系の限界
     \begin{itemize}
         \item 平坦時空で作れる座標変換は並進と回転の組み合わせのみ
         \item 平坦時空の並進・回転で生じる力は，重力のように無限遠点で減衰しない
@@ -274,7 +274,7 @@
         \vspace{0.3em}
     \end{block}
     \vspace{0.3em}
-    $\Rightarrow$ 一般のテンソルは、\textbf{上付き添字1つにつき $\pdiff{y}{x}$}、\textbf{下付き添字1つにつき $\pdiff{x}{y}$} が掛かる.
+    $\Rightarrow$ 一般のテンソルは、上付き添字1つにつき $\pdiff{y}{x}$、下付き添字1つにつき $\pdiff{x}{y}$ が掛かる.
 \end{frame}
 
 
@@ -282,7 +282,7 @@
     \begin{block}{時空の2点間の距離の測り方}
         局所座標として$x^\mu$を採用する.
 
-        点P$(x^\mu)$と点Q$(x^\mu + dx^\mu)$の距離の二乗$ds^2$は一般に$dx^\mu$の二次形式
+        点P$(x)$と点Q$(x + dx)$の距離の二乗$ds^2$は一般に$dx^\mu$の二次形式
         \begin{equation*}
             ds^2 = g_{\mu_\nu} dx^\mu dx^\nu
         \end{equation*}
@@ -333,13 +333,89 @@
     $\therefore \quad \bm{d\Omega = \sqrt{-g} \, d^4x}$ \normalsize \quad （不変体積要素）
 \end{frame}
 
-\begin{frame}{一般相対論の舞台:接続}
+\begin{frame}{一般相対論の舞台:曲がった時空での微分}
+    $\blacksquare$ スカラー量$\phi$の微分は共変ベクトルとしての変換則を満たす:
+    \begin{equation*}
+        \pdiff{\phi}{x^\mu} = \pdiff{\phi}{y^\nu}\pdiff{y^\nu}{x^\mu}
+    \end{equation*}
+    $\blacksquare$ ベクトル量$A^\mu$の微分はベクトルとしての変換則を満たさない:
+    \begin{equation*}
+        {A'}^\mu = \pdiff{y^\mu}{x^\nu}A^\nu \quad\text{より，}\quad d{A'}^\mu = \pdiff{y^\mu}{x^\nu}dA^\nu + A^\nu\frac{\partial^2 y^\mu}{\partial x^\nu \partial x^\lambda}dx^\lambda
+    \end{equation*}
+    $\Rightarrow$ ベクトルの偏微分は座標系に依存する量であり，物理を記述するには不満足である(テンソルになっていない).
+
+        ベクトルの偏微分がうまくいかなかった理由:
+
+    曲がっている空間の異なる2点のベクトルの引き算をしたから!!
+\end{frame}
+
+
+\begin{frame}{一般相対論の舞台: ベクトルの平行移動と微分}
+    \begin{block}{ベクトルの平行移動と差分の計算}
+        点 $\mathrm{P}(x)$ のベクトル $A^\mu(x)$ を点 $\mathrm{Q}(x+dx)$ へ平行移動させたベクトル:
+        \begin{equation*}
+            A_\parallel^\mu(x+dx) = A^\mu(x) - \Gamma^\mu_{\nu\lambda}(x) A^\nu(x) dx^\lambda
+        \end{equation*}
+        同じ点 $\mathrm{Q}$ でのベクトル $A^\mu(x+dx)$ との差分を計算すると、
+        \begin{align*}
+            \Delta A^\mu 
+            &= A^\mu(x+dx) - A_\parallel^\mu(x+dx) \\
+            &= \left( \pdiff{A^\mu(x)}{x^\lambda} + \Gamma^\mu_{\nu\lambda}(x) A^\nu(x) \right) dx^\lambda \;\equiv\; (\nabla_\lambda A^\mu) dx^\lambda
+        \end{align*}
+    \end{block}
+
+    \vspace{0.4em}
+    \centering
+    $\Longrightarrow \quad \displaystyle \bm{\nabla_\lambda A^\mu \equiv \pdiff{A^\mu(x)}{x^\lambda} + \Gamma^\mu_{\nu\lambda}(x) A^\nu(x)}$ \quad （\textbf{共変微分}）
+\end{frame}
+
+\begin{frame}{一般相対論の舞台: 共変ベクトルとテンソルの共変微分}
+    $\blacksquare$ 共変ベクトルの共変微分
+    \begin{itemize}
+        \item スカラーの内積 $A_\mu B^\mu$ の微分が通常の偏微分に一致する要請から定まる:
+        \begin{equation*}
+            \nabla_\lambda(A_\mu B^\mu) = \partial_\lambda(A_\mu B^\mu)
+        \end{equation*}
+        \item 反変の公式 $\nabla_\lambda B^\mu = \partial_\lambda B^\mu + \Gamma^\mu_{\nu\lambda} B^\nu$ とライプニッツ則を用いると:
+        \begin{equation*}
+            \nabla_\lambda A_\mu = \pdiff{A_\mu}{x^\lambda} - \Gamma^\nu_{\mu\lambda} A_\nu \quad \text{（接続項の符号が反転する）}
+        \end{equation*}
+    \end{itemize}
+
+    \vspace{0.4em}
+    $\blacksquare$ 一般のテンソルへの拡張
+    \begin{itemize}
+        \item 各添字に対して「上付き添字には $+\Gamma$」「下付き添字には $-\Gamma$」が作用する
+        \item 例: 2階共変テンソル $T_{\mu\nu}$（計量 $g_{\mu\nu}$ など）の共変微分
+        \begin{equation*}
+            \nabla_\lambda T_{\mu\nu} = \pdiff{T_{\mu\nu}}{x^\lambda} - \Gamma^\sigma_{\mu\lambda} T_{\sigma\nu} - \Gamma^\sigma_{\nu\lambda} T_{\mu\sigma}
+        \end{equation*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{計量によるクリストッフェル記号の決定}
+    $\blacksquare$ 平行移動に対する要請
+    \begin{itemize}
+        \item ベクトルのノルム保存（計量条件）: $\nabla_\lambda g_{\mu\nu} = 0$
+        \item 下付き添字の対称性(ガリレイ的座標の存在): $\Gamma^\mu_{\nu\lambda} = \Gamma^\mu_{\lambda\nu}$
+    \end{itemize}
+
+    \vspace{0.8em}
+    $\blacksquare$ クリストッフェル記号の決定
+    \begin{itemize}
+        \item 計量条件 $\partial_\lambda g_{\mu\nu} = \Gamma^\sigma_{\mu\lambda} g_{\sigma\nu} + \Gamma^\sigma_{\nu\lambda} g_{\mu\sigma}$ と添字の対称性から連立方程式を解くことで、計量とその偏微分により一意に定まる:
+    \end{itemize}
+
+    \begin{equation*}
+        \Gamma^\mu_{\nu\lambda} = \frac{1}{2} g^{\mu\rho} \left( \pdiff{g_{\rho\nu}}{x^\lambda} + \pdiff{g_{\rho\lambda}}{x^\nu} - \pdiff{g_{\nu\lambda}}{x^\rho} \right)
+    \end{equation*}
 \end{frame}
 
 \begin{frame}{一般相対論の舞台:リーマン曲率テンソル}
+    
 \end{frame}
 
-\begin{frame}{一般相対論の舞台:曲率テンソル}
+\begin{frame}{一般相対論の舞台:曲率テンソルの自由度と曲率を表す量}
 \end{frame}
 
 \section{最小作用の原理}
@@ -354,7 +430,5 @@
 
 \begin{frame}{時空の運動方程式}
 \end{frame}
-
-
 
 \end{document}
