@@ -589,6 +589,28 @@
     % https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S4.html
 \end{frame}
 
+\begin{frame}{物質の作用とエネルギー運動量テンソル}
+    $\blacksquare$ 全作用を，重力場自身の作用と物質の作用に分ける
+    \begin{equation*}
+        S = \underbrace{S_{\mathrm g}}_{\text{重力場自身の作用}}
+          + \underbrace{S_{\mathrm m}}_{\text{物質・電磁場などの作用}}
+    \end{equation*}
+
+    \vspace{0.6em}
+    $\blacksquare$ $S_{\mathrm m}$ を計量で変分し，その係数から $T_{\mu\nu}$ を定義
+    \begin{equation*}
+        \delta S_{\mathrm m}
+        = \frac{1}{2c}\int
+        \underbrace{T_{\mu\nu}}_{\text{エネルギー運動量テンソル}}
+        \,\delta g^{\mu\nu}\sqrt{-g}\,d^4x
+    \end{equation*}
+
+    \vspace{0.4em}
+    {\small 物質の場は固定する. $S_{\mathrm m}$ も内積や体積要素を通じて計量に依存する.}
+    % Reference: David Tong, General Relativity, section 4.5.
+    % https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S4.html
+\end{frame}
+
 \begin{frame}{時空の運動方程式}
     $\blacksquare$ 重力と物質を合わせた作用
     \begin{equation*}
@@ -596,7 +618,7 @@
         \qquad \text{（$S_{\mathrm m}$: 物質の作用）}
     \end{equation*}
 
-    $\blacksquare$ 物質の作用を計量で変分し，$T_{\mu\nu}$ を定義
+    $\blacksquare$ 前頁で定義した $T_{\mu\nu}$ を用いる
     \begin{equation*}
         \delta S_{\mathrm m}
         = \frac{1}{2c}\int
@@ -614,31 +636,6 @@
     % With physical matter actions, delta S_m = +(1/2c) int sqrt(-g) T_mn delta g^mn.
     % Boundary variations vanish as on the preceding slide; Lambda is omitted.
     % Reference: David Tong, General Relativity, section 4.5 (adapted signs and c).
-    % https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S4.html
-\end{frame}
-
-\begin{frame}{補足: 物質の作用 $S_{\mathrm m}$}
-    $\blacksquare$ 物質・電磁場など，重力以外の場を記述する作用
-    \begin{equation*}
-        S_{\mathrm m}
-        = \frac{1}{c}\int \mathcal{L}_{\mathrm m}\sqrt{-g}\,d^4x
-        \qquad \text{（$\mathcal{L}_{\mathrm m}$: 物質のラグランジアン）}
-    \end{equation*}
-
-    \vspace{0.4em}
-    $\blacksquare$ 物質の作用も計量 $g_{\mu\nu}$ に依存する
-    \begin{itemize}
-        \item $\mathcal{L}_{\mathrm m}$: 内積や微分に計量が入る
-        \item $\sqrt{-g}\,d^4x$: 時空の体積要素も計量で決まる
-    \end{itemize}
-
-    \vspace{0.4em}
-    \begin{block}{計量を変えたときの $S_{\mathrm m}$ の応答}
-        物質の場を固定して変分し，その係数を $T_{\mu\nu}$ として表す.
-    \end{block}
-    % x^0=ct; L_m has the units of energy density, hence the factor 1/c.
-    % The precise normalization of T_mn is defined on the preceding slide.
-    % Reference: David Tong, General Relativity, section 4.5.
     % https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S4.html
 \end{frame}
 
