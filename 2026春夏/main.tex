@@ -590,6 +590,31 @@
 \end{frame}
 
 \begin{frame}{時空の運動方程式}
+    $\blacksquare$ 重力と物質を合わせた作用
+    \begin{equation*}
+        S = -\frac{c^3}{16\pi G}\int R\sqrt{-g}\,d^4x + S_{\mathrm m}
+        \qquad \text{（$S_{\mathrm m}$: 物質の作用）}
+    \end{equation*}
+
+    $\blacksquare$ 物質の作用を計量で変分し，$T_{\mu\nu}$ を定義
+    \begin{equation*}
+        \delta S_{\mathrm m}
+        = \frac{1}{2c}\int
+        \underbrace{T_{\mu\nu}}_{\text{エネルギー運動量テンソル}}
+        \,\delta g^{\mu\nu}\sqrt{-g}\,d^4x
+    \end{equation*}
+
+    $\blacksquare$ 任意の計量の変分に対して $\delta S=0$
+    \begin{equation*}
+        \boxed{R_{\mu\nu}-\frac{1}{2}g_{\mu\nu}R
+        = \frac{8\pi G}{c^4}T_{\mu\nu}}
+        \qquad \text{（アインシュタイン方程式）}
+    \end{equation*}
+    % Signature (+---), x^0=ct, and the curvature convention defined earlier.
+    % With physical matter actions, delta S_m = +(1/2c) int sqrt(-g) T_mn delta g^mn.
+    % Boundary variations vanish as on the preceding slide; Lambda is omitted.
+    % Reference: David Tong, General Relativity, section 4.5 (adapted signs and c).
+    % https://www.damtp.cam.ac.uk/user/tong/gr/grhtml/S4.html
 \end{frame}
 
 \end{document}
